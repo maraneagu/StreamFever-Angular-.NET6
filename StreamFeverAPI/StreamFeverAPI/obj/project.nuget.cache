@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "jBb7LZusiRsuEV370yqJ6FyGHB/sphH6/5aY2lFPM5bEia7YBWJZD0ektndbW3zm70BOlNF7dbi7K8PVM7n1Og==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\maran\\OneDrive\\Desktop\\Streamfever-Angular-.NET6\\StreamFeverAPI\\StreamFeverAPI\\StreamFeverAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\maran\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\maran\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\maran\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\maran\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\maran\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\maran\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

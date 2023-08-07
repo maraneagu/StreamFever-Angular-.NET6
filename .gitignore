@@ -1,0 +1,12 @@
+# ENVIRONMENT FILES
+/StreamFeverUI/.editorconfig
+/StreamFeverUI/angular.json
+
+# PACKAGE FILES
+/StreamFeverUI/package-lock.json
+/StreamFeverUI/package.json
+
+# TSCONFIG FILES
+/StreamFeverUI/tsconfig.app.json
+/StreamFeverUI/tsconfig.json
+/StreamFeverUI/tsconfig.spec.json
