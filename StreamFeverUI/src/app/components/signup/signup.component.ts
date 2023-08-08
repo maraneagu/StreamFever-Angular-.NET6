@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 
@@ -16,7 +17,7 @@ export class SignupComponent implements OnInit{
   eyeIcon: string = "fa-eye-slash";
   
   signupForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private authentification: AuthentificationService, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private authentification: AuthentificationService, private router: Router, private toast: NgToastService) {}
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -43,19 +44,19 @@ export class SignupComponent implements OnInit{
       .subscribe({
         next:(response) => 
         {
-          alert(response.message)
+          this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
           this.signupForm.reset();
           this.router.navigate([''] );
         },
         error:(error) => 
         {
-          alert(error.error.message)
+          this.toast.error({ detail:"ERROR", summary: error.error.message, duration: 5000});
         }
       })
     }
     else {
       ValidateForm.validateAllFormFields(this.signupForm);
-      alert("Form Invalid!");
+      this.toast.error({ detail:"ERROR", summary: "The Form Is Invalid!", duration: 5000});
     }
   }
 }
