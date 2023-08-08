@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateForm';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +16,7 @@ export class SignupComponent implements OnInit{
   eyeIcon: string = "fa-eye-slash";
   
   signupForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private authentification: AuthentificationService, private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -34,7 +36,23 @@ export class SignupComponent implements OnInit{
   }
 
   onSubmit() {
-    if (this.signupForm.valid) {}
+    if (this.signupForm.valid) 
+    {
+      console.log(this.signupForm.value);
+      this.authentification.signup(this.signupForm.value)
+      .subscribe({
+        next:(response) => 
+        {
+          alert(response.message)
+          this.signupForm.reset();
+          this.router.navigate(['login'] );
+        },
+        error:(error) => 
+        {
+          alert(error.error.message)
+        }
+      })
+    }
     else {
       ValidateForm.validateAllFormFields(this.signupForm);
       alert("Form Invalid!");
