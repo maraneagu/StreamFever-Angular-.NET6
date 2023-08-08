@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StreamFeverAPI.Context;
+using StreamFeverAPI.Helpers;
 using StreamFeverAPI.Models;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace StreamFeverAPI.Controllers
 {
@@ -25,12 +28,20 @@ namespace StreamFeverAPI.Controllers
             }
 
             var user = await _context.Users.
-                FirstOrDefaultAsync(u => u.Username == userBody.Username && u.Password == userBody.Password);
+                FirstOrDefaultAsync(u => u.Username == userBody.Username);
             if (user == null)
             {
                 return NotFound(new
                 {
                     Message = "User Not Found!"
+                });
+            }
+
+            if (!PasswordHasher.VerifyPassword(userBody.Password, user.Password))
+            {
+                return BadRequest(new
+                {
+                    Message = "The Password Is Incorrect!"
                 });
             }
 
@@ -48,6 +59,26 @@ namespace StreamFeverAPI.Controllers
                 return BadRequest();
             }
 
+            // CHECK USERNAME
+            if (await UsernameExistsAsync(userBody.Username))
+                return BadRequest(new
+                {
+                    Message = "The Username Already Exists!"
+                });
+
+            // CHECK PASSWORD STRENGTH
+            var errorMessage = PasswordStrength(userBody.Password);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                return BadRequest(new
+                {
+                    Message = errorMessage.ToString()
+                });
+            }
+            
+            userBody.Password = PasswordHasher.HashPassword(userBody.Password);
+            userBody.Token = "";
+            
             await _context.Users.AddAsync(userBody);
             await _context.SaveChangesAsync();
 
@@ -55,6 +86,26 @@ namespace StreamFeverAPI.Controllers
             {
                 Message = "Signup Succesful!"
             });
+        }
+
+        private Task<bool> UsernameExistsAsync(string username)
+            => _context.Users.AnyAsync(u => u.Username == username);
+    
+        private string PasswordStrength(string password)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (password.Length < 8)
+                stringBuilder.Append("The Minimum Length For The Password Should be 8!" + Environment.NewLine);
+
+            if (!(Regex.IsMatch(password, "[a-zA-Z]")
+                && Regex.IsMatch(password, "[0-9]")))
+                stringBuilder.Append("The Password Should Be Alphanumeric!" + Environment.NewLine);
+
+            if (!(Regex.IsMatch(password, "[<, >, @, !, #, $, %, ^, &, *, (, ), _, +, \\[, \\], {, }, ?, :, ;, |, ', \\, ., /, ~, `, -, =]")))
+                stringBuilder.Append("The Password Should Contain Special Characters!" + Environment.NewLine);
+
+            return stringBuilder.ToString();
         }
     }
 }
