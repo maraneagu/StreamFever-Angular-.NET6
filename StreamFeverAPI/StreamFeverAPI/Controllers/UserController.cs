@@ -4,8 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using StreamFeverAPI.Context;
 using StreamFeverAPI.Helpers;
 using StreamFeverAPI.Models;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Text.RegularExpressions;
+using System;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
 
 namespace StreamFeverAPI.Controllers
 {
@@ -17,6 +21,12 @@ namespace StreamFeverAPI.Controllers
         public UserController(AppDbContext appDbContext)
         {
             _context = appDbContext;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<User>> GetUsers()
+        {
+            return Ok(await _context.Users.ToListAsync());
         }
 
         [HttpPost("login")]
@@ -45,8 +55,11 @@ namespace StreamFeverAPI.Controllers
                 });
             }
 
+            user.Token = JwtToken.CreateJwtToken(user);
+
             return Ok(new
             {
+                Token = user.Token,
                 Message = "Login Succesful!"
             });
         }
@@ -60,7 +73,7 @@ namespace StreamFeverAPI.Controllers
             }
 
             // CHECK USERNAME
-            if (await UsernameExistsAsync(userBody.Username))
+            if (await UsernameExists(userBody.Username))
                 return BadRequest(new
                 {
                     Message = "The Username Already Exists!"
@@ -88,7 +101,7 @@ namespace StreamFeverAPI.Controllers
             });
         }
 
-        private Task<bool> UsernameExistsAsync(string username)
+        private Task<bool> UsernameExists(string username)
             => _context.Users.AnyAsync(u => u.Username == username);
     
         private string PasswordStrength(string password)
@@ -107,5 +120,7 @@ namespace StreamFeverAPI.Controllers
 
             return stringBuilder.ToString();
         }
+    
+        
     }
 }

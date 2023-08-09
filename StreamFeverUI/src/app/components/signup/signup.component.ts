@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthentificationService } from 'src/app/services/authentification.service';
@@ -39,14 +39,14 @@ export class SignupComponent implements OnInit{
   onSubmit() {
     if (this.signupForm.valid) 
     {
-      console.log(this.signupForm.value);
+      console.log(this.signupForm.value.role);
       this.authentification.signup(this.signupForm.value)
       .subscribe({
         next:(response) => 
         {
           this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
-          this.signupForm.reset();
           this.router.navigate([''] );
+          this.signupForm.reset();
         },
         error:(error) => 
         {
