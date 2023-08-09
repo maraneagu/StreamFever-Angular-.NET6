@@ -1,17 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthentificationService } from 'src/app/services/authentification.service';
+import { ApiService } from 'src/app/services/api/api.service';
+import { AuthentificationService } from 'src/app/services/authentification/authentification.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
-  constructor(private authentification: AuthentificationService) {}
+  public users: any = [];
+  
+  constructor(private authentification: AuthentificationService,
+    private api: ApiService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.api.getUsers()
+    .subscribe(response => {
+      this.users = response;
+    })
+  }
 
-  signout() {
-    this.authentification.signout();
+  signOut() {
+    this.authentification.signOut();
   }
 }

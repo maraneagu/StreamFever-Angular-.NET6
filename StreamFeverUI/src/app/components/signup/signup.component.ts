@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateForm';
-import { AuthentificationService } from 'src/app/services/authentification.service';
+import { AuthentificationService } from 'src/app/services/authentification/authentification.service';
 
 @Component({
   selector: 'app-signup',
@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit{
     if (this.signupForm.valid) 
     {
       console.log(this.signupForm.value.role);
-      this.authentification.signup(this.signupForm.value)
+      this.authentification.signUp(this.signupForm.value)
       .subscribe({
         next:(response) => 
         {

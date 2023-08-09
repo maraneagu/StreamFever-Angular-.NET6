@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StreamFeverAPI.Controllers
 {
@@ -23,6 +24,7 @@ namespace StreamFeverAPI.Controllers
             _context = appDbContext;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<User>> GetUsers()
         {

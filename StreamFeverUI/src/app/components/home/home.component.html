@@ -1,2 +1,8 @@
-<button (click)="signout()" class="btn btn-danger">Log Out</button>
+<button (click)="signOut()" class="btn btn-danger">Log Out</button>
 <p>home works!</p>
+
+<ul *ngFor="let user of users">
+    <li>
+        {{user.username}}
+    </li>
+</ul>

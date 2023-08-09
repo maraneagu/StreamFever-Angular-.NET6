@@ -11,17 +11,21 @@ export class AuthentificationService {
   private baseUrl : string = "https://localhost:7211/api/User/"
   constructor(private http: HttpClient, private router: Router) { }
 
-  signup(userBody : any) {
+  signUp(userBody : any) {
     return this.http.post<any>(`${this.baseUrl}signup`, userBody);
   }
+
+  signOut() {
+    localStorage.clear();
+    this.router.navigate(['']);
+  }
   
-  login(userBody : any) {
+  logIn(userBody : any) {
     return this.http.post<any>(`${this.baseUrl}login`, userBody);
   }
 
-  signout() {
-    localStorage.clear();
-    this.router.navigate(['']);
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
   }
 
   setToken(tokenValue: string) {
@@ -30,9 +34,5 @@ export class AuthentificationService {
 
   getToken() {
     return localStorage.getItem('token');
-  }
-
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
   }
 }
