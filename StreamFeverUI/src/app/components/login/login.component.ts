@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthentificationService } from 'src/app/services/authentification/authentification.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +19,10 @@ export class LoginComponent implements OnInit{
   
   loginForm!: FormGroup;
   constructor(private formBuilder: FormBuilder, 
-    private authentification: AuthentificationService, 
+    private authentificationService: AuthentificationService, 
     private toast: NgToastService,
-    private router: Router) {}
+    private router: Router,
+    private userService: UserService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -38,12 +40,17 @@ export class LoginComponent implements OnInit{
   onSubmit() {
     if (this.loginForm.valid) 
     {
-      this.authentification.logIn(this.loginForm.value)
+      this.authentificationService.logIn(this.loginForm.value)
       .subscribe({
         next:(response) => 
         {
-          this.authentification.setToken(response.token);
-          this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
+          this.authentificationService.setToken(response.token);
+          
+          const token = this.authentificationService.decodedToken();
+          this.userService.setName(token.name);
+          this.userService.setRole(token.role);
+
+          this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000}); 
           this.router.navigate(['home']);
           this.loginForm.reset();
         },

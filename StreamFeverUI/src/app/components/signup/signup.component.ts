@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit{
   eyeIcon: string = "fa-eye-slash";
   
   signupForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private authentification: AuthentificationService, private router: Router, private toast: NgToastService) {}
+  constructor(private formBuilder: FormBuilder, private authentificationService: AuthentificationService, private router: Router, private toast: NgToastService) {}
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -39,8 +39,7 @@ export class SignupComponent implements OnInit{
   onSubmit() {
     if (this.signupForm.valid) 
     {
-      console.log(this.signupForm.value.role);
-      this.authentification.signUp(this.signupForm.value)
+      this.authentificationService.signUp(this.signupForm.value)
       .subscribe({
         next:(response) => 
         {
