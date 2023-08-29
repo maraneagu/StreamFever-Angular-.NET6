@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { response } from 'express';
-import { ApiService } from 'src/app/services/api/api.service';
+import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/services/authentification/authentification.service';
 import { UserService } from 'src/app/services/user/user.service';
+
 
 @Component({
   selector: 'app-home',
@@ -13,13 +13,14 @@ import { UserService } from 'src/app/services/user/user.service';
 export class HomeComponent implements OnInit {
   public users: any = [];
   public name: string = "";
+  public role!: string;
   
   constructor(private authentificationService: AuthentificationService,
-    private apiService: ApiService,
-    private userService: UserService) {}
+    private userService: UserService,
+    private router: Router) {}
 
   ngOnInit() {
-    this.apiService.getUsers()
+    this.userService.getUsers()
     .subscribe(response => {
       this.users = response;
     });
@@ -29,6 +30,16 @@ export class HomeComponent implements OnInit {
       let nameToken = this.authentificationService.getNameToken();
       this.name = response || nameToken;
     });
+
+    this.userService.getRole()
+    .subscribe(response => {
+      let roleToken = this.authentificationService.getRoleToken();
+      this.role = response || roleToken;
+    })
+  }
+
+  createGroup() : void {
+    this.router.navigate(['createGroup']);
   }
 
   logOut() {

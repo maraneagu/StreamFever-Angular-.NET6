@@ -17,5 +17,14 @@
             </div>
         </div>
     </div>
+
+    <div class="buttons" *ngIf="role === 'manager'">
+        <button class="button" data-tooltip="Create a Group" (click)="createGroup()">
+            <span class="fa fa-object-group icon"></span>
+        </button>
+        <button class="button" data-tooltip="Create a Session">
+            <span class="fa fa-address-card icon"></span>
+        </button>
+    </div>
 </div>
 

@@ -58,6 +58,8 @@ namespace StreamFeverAPI.Controllers
             }
 
             user.Token = JwtToken.CreateJwtToken(user);
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
 
             return Ok(new
             {

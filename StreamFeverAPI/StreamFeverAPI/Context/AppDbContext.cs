@@ -11,9 +11,11 @@ namespace StreamFeverAPI.Context
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Group> Groups { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("users");   
+            modelBuilder.Entity<User>().ToTable("users");
+            modelBuilder.Entity<Group>().ToTable("groups");
         }
     }
 }

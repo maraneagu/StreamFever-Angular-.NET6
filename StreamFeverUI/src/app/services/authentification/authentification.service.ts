@@ -33,7 +33,7 @@ export class AuthentificationService {
     return !!localStorage.getItem('token');
   }
 
-  getToken() {
+  getToken() : any {
     return localStorage.getItem('token');
   }
 

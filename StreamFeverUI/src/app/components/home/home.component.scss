@@ -2,3 +2,56 @@
     background: linear-gradient(to bottom, rgb(39, 3, 94), rgb(26, 2, 59));    
     height: 100vh;
 }
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.button {
+    background-color: rgb(161, 168, 227);
+    color: rgb(39, 3, 94);
+
+    padding: 15px 120px;
+    margin: 0 40px; 
+    
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+
+    .icon {
+        font-size: 25px;
+    }
+}
+
+.button:hover {
+    background-color: rgb(16, 1, 37);
+    color: rgb(161, 168, 227);
+}
+
+.button::after {
+    content: attr(data-tooltip);
+
+    background-color: rgba(0, 0, 0, 0.7);
+    color: rgb(161, 168, 227);
+    
+    position: absolute;
+    transform: translateX(-64%) translateY(64px);
+
+    padding: 5px 10px;
+    border-radius: 5px;
+
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.button:hover::after {
+    opacity: 1;
+}
+
+
+
+

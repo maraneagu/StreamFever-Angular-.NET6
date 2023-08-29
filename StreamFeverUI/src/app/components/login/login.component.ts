@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit{
   type: string = "password";
   isVisible: boolean = false;
   eyeIcon: string = "fa-eye-slash";
-  
   loginForm!: FormGroup;
+
   constructor(private formBuilder: FormBuilder, 
     private authentificationService: AuthentificationService, 
     private toast: NgToastService,

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -5,24 +6,30 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+  private baseUrl : string = "https://localhost:7211/api/User/"
+
   private name = new BehaviorSubject<string>("");
   private role = new BehaviorSubject<string>("");
   
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  public getName() {
+  getName() {
     return this.name.asObservable();
   }
 
-  public setName(name : string) {
+  setName(name : string) {
     this.name.next(name);
   }
 
-  public getRole() {
+  getRole() {
     return this.role.asObservable();
   }
 
-  public setRole(role : string) {
+  setRole(role : string) {
     this.role.next(role);
+  }
+
+  getUsers() {
+    return this.http.get<any>(this.baseUrl);
   }
 }

@@ -1,0 +1,33 @@
+<div class="createGroup">
+    <div class="form">
+        <div class="heading">
+            <span class="fa fa-object-group icon-heading"></span>
+            <h3 class="text-heading">
+                Group
+            </h3>
+        </div>
+        
+        <div class="body">
+            <form [formGroup]="createGroupForm">
+                <div class="form-group pt-3">
+                    <div class="input-field" [class.error]="createGroupForm.controls['name'].dirty && createGroupForm.hasError('required', 'name')">
+                        <span class="fa fa-star p-2"></span>
+    
+                        <input formControlName='name' type="text" placeholder="Name">
+                    </div>
+                </div>
+                <small *ngIf="createGroupForm.controls['name'].dirty && createGroupForm.hasError('required', 'name')" class="text-danger">*The name is required.</small>
+    
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <span class="fa fa-camera-retro p-2"></span>
+    
+                        <input formControlName='description' type="text" placeholder="Description">
+                    </div>
+                </div>
+                
+                <button (click)="onSubmit()" type="submit" class="button">Create</button>
+            </form>
+        </div> 
+    </div>
+</div>
