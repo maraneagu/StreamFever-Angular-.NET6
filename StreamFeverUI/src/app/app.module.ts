@@ -10,8 +10,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptor } from './interceptors/token/token.interceptor';
-import { CreateGroupComponent } from './components/group/create/create-group/create-group.component';
-import { CreateSessionComponent } from './components/session/create/create-session/create-session.component';
+import { CreateGroupComponent } from './components/group/create-group/create-group.component';
+import { CreateSessionComponent } from './components/session/create-session/create-session.component';
+import { ReadGroupsComponent } from './components/group/read-groups/read-groups.component';
+import { ReadSessionsComponent } from './components/session/read-sessions/read-sessions.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CreateSessionComponent } from './components/session/create/create-sessi
     SignupComponent,
     HomeComponent,
     CreateGroupComponent,
-    CreateSessionComponent
+    CreateSessionComponent,
+    ReadGroupsComponent,
+    ReadSessionsComponent
   ],
   imports: [
     BrowserModule,

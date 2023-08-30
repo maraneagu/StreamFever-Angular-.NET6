@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/services/authentification/authentification.service';
+import { GroupService } from 'src/app/services/group/group.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 
@@ -11,20 +12,15 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 
 export class HomeComponent implements OnInit {
-  public users: any = [];
   public name: string = "";
   public role!: string;
   
   constructor(private authentificationService: AuthentificationService,
     private userService: UserService,
+    private groupService: GroupService,
     private router: Router) {}
 
   ngOnInit() {
-    this.userService.getUsers()
-    .subscribe(response => {
-      this.users = response;
-    });
-
     this.userService.getName()
     .subscribe(response => {
       let nameToken = this.authentificationService.getNameToken();
@@ -40,6 +36,18 @@ export class HomeComponent implements OnInit {
 
   createGroup() : void {
     this.router.navigate(['createGroup']);
+  }
+
+  createSession() : void {
+    this.router.navigate(['createSession']);
+  }
+
+  groups() : void {
+    this.router.navigate(['groups']);
+  }
+
+  sessions() : void {
+    this.router.navigate(['sessions']);
   }
 
   logOut() {

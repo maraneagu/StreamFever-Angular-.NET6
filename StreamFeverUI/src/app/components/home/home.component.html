@@ -18,13 +18,24 @@
         </div>
     </div>
 
-    <div class="buttons" *ngIf="role === 'manager'">
+    <div class="create-buttons" *ngIf="role === 'manager'">
         <button class="button" data-tooltip="Create a Group" (click)="createGroup()">
             <span class="fa fa-object-group icon"></span>
         </button>
-        <button class="button" data-tooltip="Create a Session">
+        <button class="button" data-tooltip="Create a Session" (click)="createSession()">
             <span class="fa fa-address-card icon"></span>
         </button>
     </div>
+
+    <div class="read-buttons">
+        <button class="button" (click)="groups()">
+            <span class="text">Groups</span>
+        </button>
+        <button class="button" (click)="sessions()">
+            <span class="text">Sessions</span>
+        </button>
+    </div>
+
+    <span class="fa fa-ticket ticket-text"></span>
 </div>
 

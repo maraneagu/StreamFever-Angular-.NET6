@@ -1,0 +1,53 @@
+<div class="createSession">
+    <div class="form">
+        <div class="heading">
+            <span class="fa fa-address-card icon-heading"></span>
+            <h3 class="text-heading">
+                Session
+            </h3>
+        </div>
+        
+        <div class="body">
+            <form [formGroup]="createSessionForm">
+                <div class="form-group pt-3">
+                    <div class="input-field" [class.error]="createSessionForm.controls['title'].dirty && createSessionForm.hasError('required', 'title')">
+                        <span class="fa fa-star p-2"></span>
+    
+                        <input formControlName='title' type="text" placeholder="Title">
+                    </div>
+                </div>
+                <small *ngIf="createSessionForm.controls['title'].dirty && createSessionForm.hasError('required', 'title')" class="text-danger">*The title is required.</small>
+    
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <span class="fa fa-camera-retro p-2"></span>
+    
+                        <input formControlName='description' type="text" placeholder="Description">
+                    </div>
+                </div>
+
+                <div class="form-group pt-3">
+                    <div class="input-field" [class.error]="createSessionForm.controls['date'].dirty && createSessionForm.hasError('required', 'date')">
+                        <span class="fa fa-address-card p-2"></span>
+                        <label for="time" class="me-2 text-muted">Date</label>
+
+                        <input formControlName='date' type="date" placeholder="Date">
+                    </div>
+                </div>
+                <small *ngIf="createSessionForm.controls['date'].dirty && createSessionForm.hasError('required', 'date')" class="text-danger">*The date is required.</small>
+
+                <div class="form-group pt-3">
+                    <div class="input-field" [class.error]="createSessionForm.controls['time'].dirty && createSessionForm.hasError('required', 'time')">
+                        <span class="fa fa-address-card p-2"></span>
+                        <label for="time" class="me-2 text-muted">Time</label>
+
+                        <input formControlName='time' type="time" placeholder="Time">
+                    </div>
+                </div>
+                <small *ngIf="createSessionForm.controls['time'].dirty && createSessionForm.hasError('required', 'time')" class="text-danger">*The time is required.</small>
+
+                <button (click)="onSubmit()" type="submit" class="button">Create</button>
+            </form>
+        </div> 
+    </div>
+</div>

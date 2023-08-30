@@ -1,57 +1,100 @@
 .home {
     background: linear-gradient(to bottom, rgb(39, 3, 94), rgb(26, 2, 59));    
     height: 100vh;
+
+    font-family: Jost;
 }
 
-.buttons {
+.create-buttons {
     display: flex;
     justify-content: center;
-    margin-top: 80px;
-}
+    margin: 100px 10% 0px 10%;
 
-.button {
-    background-color: rgb(161, 168, 227);
-    color: rgb(39, 3, 94);
-
-    padding: 15px 120px;
-    margin: 0 40px; 
+    .button {
+        background-color: rgb(161, 168, 227);
+        color: rgb(39, 3, 94);
     
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-
-    .icon {
-        font-size: 25px;
+        width: 100%;
+        padding: 10px;
+        margin: 0 40px; 
+        
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+    
+        .icon {
+            font-size: 20px;
+        }
+    }
+    
+    .button:hover {
+        background-color: rgb(16, 1, 37);
+        color: rgb(161, 168, 227);
+    }
+    
+    .button::after {
+        content: attr(data-tooltip);
+    
+        background-color: rgba(0, 0, 0, 0.7);
+        color: rgb(161, 168, 227);
+        
+        position: absolute;
+        transform: translateX(-64%) translateY(-60px);
+    
+        padding: 5px 10px;
+        border-radius: 5px;
+    
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+    }
+    
+    .button:hover::after {
+        opacity: 1;
     }
 }
 
-.button:hover {
-    background-color: rgb(16, 1, 37);
-    color: rgb(161, 168, 227);
-}
+.read-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 50px 10% 0px 10%;
 
-.button::after {
-    content: attr(data-tooltip);
-
-    background-color: rgba(0, 0, 0, 0.7);
-    color: rgb(161, 168, 227);
+    .button {
+        background-color:  rgb(16, 1, 37);
+        color: rgb(161, 168, 227);
     
-    position: absolute;
-    transform: translateX(-64%) translateY(64px);
+        width: 100%;
+        height: 33vh;
+        margin: 0 40px; 
+        
+        border: 3px solid rgb(161, 168, 227);
+        border-radius: 8px;
 
-    padding: 5px 10px;
-    border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .button:hover {
+        background-color: #616ccd;
+        color: rgb(39, 3, 94);
+        font-weight: 500;
 
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
+        border: 5px solid rgb(17, 1, 39);
+    }
+
+    .text {
+        font-size: 30px;
+    }
 }
 
-.button:hover::after {
-    opacity: 1;
-}
+.ticket-text {
+    display: flex;
+    justify-content: center;
 
+    color: #616ccd;
+    font-size: 20px;
+    margin-top: 65px;
+}
 
 
 

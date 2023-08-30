@@ -4,7 +4,10 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { authentificationGuard } from './guards/authentification.guard';
-import { CreateGroupComponent } from './components/group/create/create-group/create-group.component';
+import { CreateGroupComponent } from './components/group/create-group/create-group.component';
+import { CreateSessionComponent } from './components/session/create-session/create-session.component';
+import { ReadGroupsComponent } from './components/group/read-groups/read-groups.component';
+import { ReadSessionsComponent } from './components/session/read-sessions/read-sessions.component';
 
 // DEFINING THE ROUTES FOR THE APP
 const routes: Routes = [
@@ -25,6 +28,18 @@ const routes: Routes = [
   {
     path: 'createGroup',
     component: CreateGroupComponent
+  },
+  {
+    path: 'createSession',
+    component: CreateSessionComponent
+  },
+  {
+    path: 'groups',
+    component: ReadGroupsComponent
+  },
+  {
+    path: 'sessions',
+    component: ReadSessionsComponent
   }
 ];
 
