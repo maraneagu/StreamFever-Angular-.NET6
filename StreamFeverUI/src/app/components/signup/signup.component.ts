@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit{
         },
         error:(error) => 
         {
-          this.toast.error({ detail:"ERROR", summary: error.error.message, duration: 5000});
+          this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
         }
       })
     }

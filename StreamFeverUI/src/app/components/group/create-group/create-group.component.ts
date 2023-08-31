@@ -36,7 +36,7 @@ export class CreateGroupComponent implements OnInit {
         next:(response) => 
         {
           this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
-          this.router.navigate(['home'] );
+          this.router.navigate(['groups'] );
           this.createGroupForm.reset();
         },
         error:(error) => 

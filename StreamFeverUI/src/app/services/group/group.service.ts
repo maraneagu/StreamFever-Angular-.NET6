@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthentificationService } from '../authentification/authentification.service';
+import { UserGroup } from 'src/app/models/user-group.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class GroupService {
   constructor(private http: HttpClient,
     private authentificationService : AuthentificationService) {}
 
-  createGroup(groupBody : any) {
+  createGroup(groupBody: any) {
     const userToken : string = this.authentificationService.getToken();
     const httpOptions = {
       headers: {
@@ -21,6 +22,14 @@ export class GroupService {
     };
 
     return this.http.post<any>(`${this.baseUrl}create`, groupBody, httpOptions);
+  }
+
+  joinGroup(userGroupBody: any) {
+    return this.http.post<any>(`${this.baseUrl}join`, userGroupBody);
+  }
+
+  userInGroup(userGroupBody: any){
+    return this.http.get<any>(`${this.baseUrl}userInGroup`, userGroupBody);
   }
 
   getGroups() {

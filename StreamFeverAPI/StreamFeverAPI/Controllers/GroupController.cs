@@ -50,5 +50,52 @@ namespace StreamFeverAPI.Controllers
                 Message = "Group Created Succesfully!"
             });
         }
+
+        [HttpPost("join")]
+        public async Task<IActionResult> JoinGroup([FromBody] UserGroup userGroupBody)
+        {
+            var user = await _context.Users.
+                FirstOrDefaultAsync(u => u.Id == userGroupBody.UserId);
+
+            if (user == null)
+            {
+                return NotFound(new
+                {
+                    Message = "User Not Found!"
+                });
+            }
+
+            var group = await _context.Groups.
+                FirstOrDefaultAsync(g => g.Id == userGroupBody.GroupId);
+
+            if (group == null)
+            {
+                return NotFound(new
+                {
+                    Message = "Group Not Found!"
+                });
+            }
+
+            await _context.UserGroups.AddAsync(userGroupBody);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = "Group Joined Succesfully!"
+            });
+        }
+
+        [HttpPost("userInGroup")]
+        public async Task<ActionResult<bool>> UserInGroup([FromBody] UserGroup userGroupBody)
+        {
+            var userGroup = await _context.UserGroups.
+                FirstOrDefaultAsync(ug => ug.UserId == userGroupBody.UserId && ug.GroupId == userGroupBody.GroupId);
+
+            if (userGroup == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

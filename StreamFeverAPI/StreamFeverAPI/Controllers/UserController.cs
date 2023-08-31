@@ -31,6 +31,44 @@ namespace StreamFeverAPI.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
 
+        [HttpGet("username")]
+        public async Task<ActionResult<string>> GetUsernameById(int id)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound(new
+                {
+                    Message = "User Not Found!"
+                });
+            }
+
+            return Ok(new
+            {
+                Username = user.Username
+            });
+        }
+
+        [HttpGet("id")]
+        public async Task<ActionResult<string>> GetIdByToken(string token)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Token == token);
+
+            if (user == null)
+            {
+                return NotFound(new
+                {
+                    Message = "User Not Found!"
+                });
+            }
+
+            return Ok(new
+            {
+                Id = user.Id
+            });
+        }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] User userBody)
         {

@@ -49,7 +49,8 @@ a {
     margin-left: auto;
     text-decoration: none;
     cursor: pointer;
-}
-a:hover {
-    color: rgb(39, 3, 94);
+
+    &:hover {
+        color: rgb(39, 3, 94);
+    }
 }

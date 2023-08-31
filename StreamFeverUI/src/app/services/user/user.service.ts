@@ -29,7 +29,11 @@ export class UserService {
     this.role.next(role);
   }
 
-  getUsers() {
-    return this.http.get<any>(this.baseUrl);
+  getUsernameById(userId: number) {
+    return this.http.get<any>(`${this.baseUrl}username?id=${userId}`);
+  }
+
+  getIdByToken(token: string) {
+    return this.http.get<any>(`${this.baseUrl}id?token=${token}`);
   }
 }

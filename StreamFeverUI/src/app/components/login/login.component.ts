@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit{
   type: string = "password";
   isVisible: boolean = false;
   eyeIcon: string = "fa-eye-slash";
+  
   loginForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder, 
@@ -56,7 +57,7 @@ export class LoginComponent implements OnInit{
         },
         error:(error) => 
         {
-          this.toast.error({ detail:"ERROR", summary: error.error.message, duration: 5000});
+          this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
         }
       })
     }

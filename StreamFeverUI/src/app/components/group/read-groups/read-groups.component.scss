@@ -1,0 +1,105 @@
+.read-groups {
+    background: linear-gradient(to bottom, rgb(39, 3, 94), rgb(26, 2, 59));    
+    height: 100%;
+    overflow: hidden;
+    font-family: Jost;
+
+    .header-logo {
+        cursor: pointer;
+    }
+
+    .groups {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-gap: 60px;
+        margin: 100px 90px;
+
+        .group-container {
+            margin-bottom: 60px;
+        }
+    
+        .group {
+            background-color:  rgb(16, 1, 37);
+            color: #616ccd;
+
+            display: flex;
+            flex-direction: column;
+        
+            height: auto;
+            padding: 0px 45px;
+            
+            border: 3px solid rgb(161, 168, 227);
+            border-radius: 8px;
+    
+            cursor: pointer;
+
+            .name {
+                width: 100%;
+    
+                font-size: 27px;
+                font-weight: 500;
+                text-align: center;
+                word-wrap: break-word;
+    
+                margin-top: 20px;
+            }
+
+            .username-icon {
+                color: white;
+                font-size: 12px;
+                text-align: center;
+
+                margin-top: 12px;
+            }
+    
+            .username {
+                color: white;
+                font-size: 12px;
+                font-style: italic;
+                text-align: center;    
+            }
+
+            .description-wrapper {
+                max-width: 100%; 
+                
+                margin-top: 30px;
+                margin-bottom: 35px;
+                
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                text-align: center;    
+            }
+
+            .description {
+                color:rgb(161, 168, 227);
+                font-size: 15px;
+                font-style: italic;
+            }
+
+            .join-button {
+                width: 100%;
+
+                background-color: #616ccd;
+                color: rgb(208, 210, 235);
+                font-size: 13px;
+
+                border: none;
+                border-radius: 15px;
+                margin-bottom: 35px;
+
+                &:hover {
+                    background-color: rgb(208, 210, 235);
+                    color: rgb(39, 3, 94);
+                    font-weight: 500;
+                }
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .group-container {
+                flex: 0 0 calc(50% - 10px);
+            }
+        }
+    }
+}

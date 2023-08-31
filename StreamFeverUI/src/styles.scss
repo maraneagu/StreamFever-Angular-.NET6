@@ -66,15 +66,16 @@
         
                 background-color: rgb(163, 170, 228);
                 color: rgb(39, 3, 94);
+                font-weight: 500;
 
                 border-radius: 10%;
                 border: none;
                 cursor: pointer;
-            }
 
-            .dropdown-button:hover {
-                background-color: rgb(39, 3, 94);
-                color: white;
+                &:hover {
+                    background-color: rgb(39, 3, 94);
+                    color: white;
+                }
             }
 
             .dropdown-content {
@@ -107,10 +108,10 @@
                     background-color: red;
                 }
             }
-        }
 
-        .dropdown:hover .dropdown-content{
-            display: block;
+            &:hover .dropdown-content{
+                display: block;
+            }
         }
     }
 }
@@ -185,17 +186,19 @@
 
         .button {
             color: #ffffff;
-            background: linear-gradient(to bottom, #646ECB, #454b88);    
+            background: linear-gradient(to bottom, #646ECB, #454b88);  
+
             width: 100%;
             height: 35px;
+
             margin-top: 30px;
             margin-bottom: 10px;
             border: none;
             border-radius: 15px;
-        }
 
-        .button:hover {
-            background: linear-gradient(to bottom, #454b88, rgb(59, 5, 141));    
+            &:hover {
+                background: linear-gradient(to bottom, #454b88, rgb(59, 5, 141));    
+            }
         }
     }
 }

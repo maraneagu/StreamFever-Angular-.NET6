@@ -1,1 +1,38 @@
-<p>read-groups works!</p>
+<div class="read-groups">
+    <div class="header">
+        <div class="header-logo" (click)="home()">
+            <img src="assets\icons\logo.png" alt="StreamFever Logo" class="logo">
+            <span class="text"> StreamFever </span>
+        </div>
+        <div class="header-button">
+            <div class="dropdown">
+                <button class="dropdown-button">
+                    {{name}}
+                    <span class="fa fa-caret-down"></span>
+                </button>
+                <div class="dropdown-content">
+                    <a id="a-profile" href="#">Profile</a>
+                    <a id="a-logout" (click)="logOut()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="groups">
+        <div class="group-container" *ngFor="let group of groups; let g = index">
+            <div class="group">
+                <span class="name">{{ group.name }}</span>
+
+                <span class="fa fa-user username-icon"></span>
+
+                <span class="username">{{ groupUsernames.get(group.userId) }}</span>
+                
+                <div class="description-wrapper">
+                    <span class="description">{{ group.description }}</span>
+                </div>
+
+                <button class="join-button" *ngIf="groupJoin[g]" (click)="join(group.id)">Join</button>
+            </div>
+        </div>
+    </div>
+</div>

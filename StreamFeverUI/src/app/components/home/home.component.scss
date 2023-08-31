@@ -8,7 +8,7 @@
 .create-buttons {
     display: flex;
     justify-content: center;
-    margin: 100px 10% 0px 10%;
+    margin: 100px 10% -40px 10%;
 
     .button {
         background-color: rgb(161, 168, 227);
@@ -25,11 +25,11 @@
         .icon {
             font-size: 20px;
         }
-    }
-    
-    .button:hover {
-        background-color: rgb(16, 1, 37);
-        color: rgb(161, 168, 227);
+
+        &:hover {
+            background-color: rgb(16, 1, 37);
+            color: rgb(161, 168, 227);
+        }
     }
     
     .button::after {
@@ -58,7 +58,7 @@
 .read-buttons {
     display: flex;
     justify-content: center;
-    margin: 50px 10% 0px 10%;
+    margin: 90px 10% 0px 10%;
 
     .button {
         background-color:  rgb(16, 1, 37);
@@ -72,14 +72,14 @@
         border-radius: 8px;
 
         cursor: pointer;
-    }
-    
-    .button:hover {
-        background-color: #616ccd;
-        color: rgb(39, 3, 94);
-        font-weight: 500;
 
-        border: 5px solid rgb(17, 1, 39);
+        &:hover {
+            background-color: #616ccd;
+            color: rgb(39, 3, 94);
+            font-weight: 500;
+    
+            border: 5px solid rgb(17, 1, 39);
+        }
     }
 
     .text {
