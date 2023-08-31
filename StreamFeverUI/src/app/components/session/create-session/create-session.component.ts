@@ -31,7 +31,6 @@ export class CreateSessionComponent {
   onSubmit() {
     if (this.createSessionForm.valid) 
     {
-      console.log(this.createSessionForm.value);
       this.sessionService.createSession(this.createSessionForm.value)
       .subscribe({
         next:(response) => 

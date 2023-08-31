@@ -30,10 +30,10 @@ export class UserService {
   }
 
   getUsernameById(userId: number) {
-    return this.http.get<any>(`${this.baseUrl}username?id=${userId}`);
+    return this.http.get<any>(`${this.baseUrl}${userId}/username`);
   }
 
   getIdByToken(token: string) {
-    return this.http.get<any>(`${this.baseUrl}id?token=${token}`);
+    return this.http.get<any>(`${this.baseUrl}${token}/id`);
   }
 }

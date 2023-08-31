@@ -31,8 +31,8 @@ namespace StreamFeverAPI.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
 
-        [HttpGet("username")]
-        public async Task<ActionResult<string>> GetUsernameById(int id)
+        [HttpGet("{id}/username")]
+        public async Task<ActionResult<string>> GetUsernameById([FromRoute] int id)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
@@ -50,8 +50,8 @@ namespace StreamFeverAPI.Controllers
             });
         }
 
-        [HttpGet("id")]
-        public async Task<ActionResult<string>> GetIdByToken(string token)
+        [HttpGet("{token}/id")]
+        public async Task<ActionResult<string>> GetIdByToken([FromRoute] string token)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Token == token);
 

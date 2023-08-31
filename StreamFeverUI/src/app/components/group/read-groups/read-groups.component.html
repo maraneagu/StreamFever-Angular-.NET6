@@ -31,7 +31,17 @@
                     <span class="description">{{ group.description }}</span>
                 </div>
 
-                <button class="join-button" *ngIf="groupJoin[g]" (click)="join(group.id)">Join</button>
+                <button class="join-button" *ngIf="groupJoin.get(group.id)" (click)="join(group.id)">Join</button>
+                
+                <div class="icons" *ngIf="groupEditDelete.get(group.id)">
+                    <span class="fa fa-pencil edit" (click)="edit(group.id)"></span>
+                    <span class="dot">○</span>
+                    <span class="fa fa-trash delete" (click)="delete(group.id)"></span>
+                </div>
+
+                <div class="icons" *ngIf="!groupEditDelete.get(group.id)">
+                    <span class="fa fa-ticket"></span>
+                </div>
             </div>
         </div>
     </div>

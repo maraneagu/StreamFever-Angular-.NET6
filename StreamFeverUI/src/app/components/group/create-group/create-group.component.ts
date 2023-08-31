@@ -30,7 +30,6 @@ export class CreateGroupComponent implements OnInit {
   onSubmit() {
     if (this.createGroupForm.valid) 
     {
-      console.log(this.createGroupForm.value);
       this.groupService.createGroup(this.createGroupForm.value)
       .subscribe({
         next:(response) => 

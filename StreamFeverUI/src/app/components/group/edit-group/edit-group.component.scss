@@ -1,0 +1,22 @@
+.edit-group {
+    background: linear-gradient(to bottom, rgb(39, 3, 94), rgb(26, 2, 59));    
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .button {
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+            pointer-events: none;
+
+            &:hover {
+                background-color: #ccc; // Change to the color you want
+                color: #666; // Change to the color you want
+            }
+        }
+    }
+}

@@ -14,6 +14,7 @@ import { CreateGroupComponent } from './components/group/create-group/create-gro
 import { CreateSessionComponent } from './components/session/create-session/create-session.component';
 import { ReadGroupsComponent } from './components/group/read-groups/read-groups.component';
 import { ReadSessionsComponent } from './components/session/read-sessions/read-sessions.component';
+import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ReadSessionsComponent } from './components/session/read-sessions/read-s
     CreateGroupComponent,
     CreateSessionComponent,
     ReadGroupsComponent,
-    ReadSessionsComponent
+    ReadSessionsComponent,
+    EditGroupComponent
   ],
   imports: [
     BrowserModule,

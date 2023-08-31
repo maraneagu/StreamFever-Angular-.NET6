@@ -18,7 +18,8 @@ export class ReadGroupsComponent implements OnInit {
 
   public groups: Group[] = [];
   public groupUsernames: Map<number, string> = new Map<number, string>();
-  public groupJoin: boolean[] = [];
+  public groupJoin: Map<number, boolean> = new Map<number, boolean>();
+  public groupEditDelete: Map<number, boolean> = new Map<number, boolean>();
 
   constructor(private authentificationService: AuthentificationService,
     private userService: UserService,
@@ -49,6 +50,9 @@ export class ReadGroupsComponent implements OnInit {
 
       // CHECKING IF THE GROUPS COULD BE JOINED BY THE CURRENT USER
       this.couldJoin();
+
+      // CHECKING IF THE GROUPS COULD BE EDITED BY THE CURRENT USER
+      this.couldEditDelete();
     });
   }
 
@@ -66,6 +70,8 @@ export class ReadGroupsComponent implements OnInit {
   }
 
   couldJoin() {
+    this.groupJoin.clear();
+
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
       const userId = response.id;
@@ -76,9 +82,12 @@ export class ReadGroupsComponent implements OnInit {
           groupId: group.id
         };
 
-        if (group.userId === userId || this.groupService.userInGroup(userGroup))
-          this.groupJoin.push(false);
-        else this.groupJoin.push(true);
+        this.groupService.userInGroup(userGroup).
+        subscribe((response) => {
+          if (group.userId === userId || response)
+            this.groupJoin.set(group.id, false);
+          else this.groupJoin.set(group.id, true);
+        });
       });      
     });
   }
@@ -97,7 +106,8 @@ export class ReadGroupsComponent implements OnInit {
       .subscribe({
         next:(response) => 
         {
-          this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000}); 
+          this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
+          window.location.reload(); 
         },
         error:(error) => 
         {
@@ -105,6 +115,42 @@ export class ReadGroupsComponent implements OnInit {
         }
       })
     });
+  }
+
+  couldEditDelete() {
+    this.groupEditDelete.clear();
+
+    this.userService.getIdByToken(this.authentificationService.getToken())
+    .subscribe((response) => {
+      const userId = response.id;
+
+      this.groups.forEach((group) => {
+        if (group.userId === userId)
+          this.groupEditDelete.set(group.id, true);
+        else this.groupEditDelete.set(group.id, false);
+      });      
+    });
+  }
+
+  edit(groupId: number) {
+    this.router.navigate(['editGroup', groupId]);
+  }
+
+  delete(groupId: number) {
+    this.groupService.deleteGroup(groupId)
+    .subscribe({
+      next:(response) => 
+      {
+        this.toast.success({ detail:"SUCCESS", summary: "Group Deleted Succesfully!", duration: 5000});
+        window.location.reload();
+      },
+      error:(error) => 
+      {
+        this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
+      }
+    });
+
+    this.router.navigate(['groups']);
   }
 
   home() : void {

@@ -24,12 +24,24 @@ export class GroupService {
     return this.http.post<any>(`${this.baseUrl}create`, groupBody, httpOptions);
   }
 
+  editGroup(groupBody: any) {
+    return this.http.put<any>(`${this.baseUrl}edit`, groupBody);
+  }
+
+  deleteGroup(groupId: any) {
+    return this.http.delete(`${this.baseUrl}delete?id=${groupId}`);
+  }
+
   joinGroup(userGroupBody: any) {
     return this.http.post<any>(`${this.baseUrl}join`, userGroupBody);
   }
 
-  userInGroup(userGroupBody: any){
-    return this.http.get<any>(`${this.baseUrl}userInGroup`, userGroupBody);
+  userInGroup(userGroupBody: any) {
+    return this.http.post<any>(`${this.baseUrl}user`, userGroupBody);
+  }
+
+  getGroup(groupId: number){
+    return this.http.get<any>(`${this.baseUrl}${groupId}`);
   }
 
   getGroups() {

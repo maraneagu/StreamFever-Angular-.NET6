@@ -1,0 +1,33 @@
+<div class="edit-group">
+    <div class="form">
+        <div class="heading">
+            <span class="fa fa-object-group icon-heading"></span>
+            <h3 class="text-heading">
+                Group
+            </h3>
+        </div>
+        
+        <div class="body">
+            <form [formGroup]="editGroupForm">
+                <div class="form-group pt-3">
+                    <div class="input-field" [class.error]="editGroupForm.controls['name'].dirty && editGroupForm.hasError('required', 'name')">
+                        <span class="fa fa-star p-2"></span>
+    
+                        <input formControlName='name' type="text" placeholder="Name" (change)="onNameChange()">
+                    </div>
+                </div>
+                <small *ngIf="editGroupForm.controls['name'].dirty && editGroupForm.hasError('required', 'name')" class="text-danger">*The name is required.</small>
+    
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <span class="fa fa-camera-retro p-2"></span>
+    
+                        <input formControlName='description' type="text" placeholder="Description" (change)="onDescriptionChange()">
+                    </div>
+                </div>
+                
+                <button (click)="onSubmit()" type="submit" class="button" [disabled]="!nameModified && !descriptionModified">Edit</button>
+            </form>
+        </div> 
+    </div>
+</div>

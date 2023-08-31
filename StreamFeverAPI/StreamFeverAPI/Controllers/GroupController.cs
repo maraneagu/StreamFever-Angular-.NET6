@@ -23,6 +23,25 @@ namespace StreamFeverAPI.Controllers
             return Ok(await _context.Groups.ToListAsync());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Group>> GetGroupById([FromRoute] int id)
+        {
+            var group = await _context.Groups.FirstOrDefaultAsync(g => g.Id == id);
+
+            if (group == null)
+            {
+                return NotFound(new
+                {
+                    Message = "Group Not Found!"
+                });
+            }
+
+            return Ok(new
+            {
+                Group = group
+            });
+        }
+
         [HttpPost("create")]
         public async Task<IActionResult> CreateGroup([FromBody] Group groupBody)
         {
@@ -48,6 +67,55 @@ namespace StreamFeverAPI.Controllers
             return Ok(new
             {
                 Message = "Group Created Succesfully!"
+            });
+        }
+
+        [HttpPut("edit")]
+        public async Task<IActionResult> EditGroup([FromBody] Group groupBody)
+        {
+            var group = await _context.Groups.
+                FirstOrDefaultAsync(g => g.Id == groupBody.Id);
+
+            if (group == null)
+            {
+                return NotFound(new
+                {
+                    Message = "Group Not Found!"
+                });
+            }
+
+            group.Name = groupBody.Name;
+            group.Description = groupBody.Description;
+
+            _context.Groups.Update(group);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = "Group Updated Succesfully!"
+            });
+        }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteGroup(int id)
+        {
+            var group = await _context.Groups.
+                FirstOrDefaultAsync(g => g.Id == id);
+
+            if (group == null)
+            {
+                return NotFound(new
+                {
+                    Message = "Group Not Found!"
+                });
+            }
+
+            _context.Groups.Remove(group);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = "Group Deleted Succesfully!"
             });
         }
 
@@ -85,7 +153,7 @@ namespace StreamFeverAPI.Controllers
             });
         }
 
-        [HttpPost("userInGroup")]
+        [HttpPost("user")]
         public async Task<ActionResult<bool>> UserInGroup([FromBody] UserGroup userGroupBody)
         {
             var userGroup = await _context.UserGroups.
