@@ -1,0 +1,85 @@
+.profile {
+    background: linear-gradient(to bottom, rgb(39, 3, 94), rgb(26, 2, 59));    
+    height: 120vh;
+
+    font-family: Jost;
+
+    .header-logo {
+        cursor: pointer;
+    }
+
+    .panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        background-color:  rgb(16, 1, 37);
+        color: rgb(161, 168, 227);
+        text-align: center;
+    
+        border: 3px solid rgb(161, 168, 227);
+        border-radius: 8px;
+    
+        padding: 70px;
+        margin: 90px 20% 0px 20%;
+    
+        .name {
+            color: white;
+            font-size: 27px;
+            margin-bottom: 7px;
+        }
+    
+        .username {
+            .icon {
+                margin-right: 7px;
+            }
+        }
+    
+        .buttons {
+            margin-top: 50px;
+    
+            .button {
+                background-color:  rgb(16, 1, 37);
+                color: rgb(161, 168, 227);
+        
+                width: 100%;
+                height: 50px;
+                
+                border: 3px solid rgb(161, 168, 227);
+                border-radius: 8px;
+                margin-bottom: 10px;
+        
+                cursor: pointer;
+        
+                &:hover {
+                    background-color: #616ccd;
+                    color: rgb(39, 3, 94);
+                    font-weight: 500;
+            
+                    border: 5px solid rgb(17, 1, 39);
+                }
+
+                &:disabled {
+                    cursor: not-allowed;
+                    opacity: 0.6;
+                    pointer-events: none;
+        
+                    &:hover {
+                        background-color: #ccc; 
+                        color: #666; 
+                    }
+                }
+            }
+        }
+    }
+    
+    .ticket-text {
+        display: flex;
+        justify-content: center;
+    
+        color: #616ccd;
+        font-size: 20px;
+        margin-top: 65px;
+    }
+}
+

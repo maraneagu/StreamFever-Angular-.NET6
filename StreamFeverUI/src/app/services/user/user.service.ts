@@ -36,4 +36,12 @@ export class UserService {
   getIdByToken(token: string) {
     return this.http.get<any>(`${this.baseUrl}${token}/id`);
   }
+
+  getUser(userId: number) {
+    return this.http.get<any>(`${this.baseUrl}${userId}`);
+  }
+
+  getUsers() {
+    return this.http.get<any>(`${this.baseUrl}`);
+  }
 }

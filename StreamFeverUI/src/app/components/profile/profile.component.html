@@ -1,0 +1,38 @@
+<div class="profile" *ngIf="user">
+    <div class="header">
+        <div class="header-logo" (click)="home()">
+            <img src="assets\icons\logo.png" alt="StreamFever Logo" class="logo">
+            <span class="text"> StreamFever </span>
+        </div>
+        <div class="header-button">
+            <div class="dropdown">
+                <button class="dropdown-button">
+                    {{ user.firstName }} {{ user.lastName }}
+                    <span class="fa fa-caret-down"></span>
+                </button>
+                <div class="dropdown-content">
+                    <a id="a-logout" (click)="logOut()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <span class="name">{{ user.firstName }} {{ user.lastName }}</span>
+
+        <div class="username">
+            <span class="fa fa-user icon"></span>
+            <span class="text">{{ user.username }}</span>
+        </div>
+
+        <div class="buttons">
+            <button class="button" [disabled]="!createdGroups" (click)="getCreatedGroups()">My Groups</button>
+            <button class="button" [disabled]="!createdSessions" (click)="getCreatedSessions()">My Sessions</button>
+            <button class="button" [disabled]="!joinedGroups" (click)="getJoinedGroups()">Joined Groups</button>
+            <button class="button" [disabled]="!attendedSessions" (click)="getAttendedSessions()">Attended Sessions</button>
+        </div>
+    </div>
+
+    <span class="fa fa-ticket ticket-text"></span>
+</div>
+

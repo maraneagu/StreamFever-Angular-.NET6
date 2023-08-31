@@ -1,29 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { Session } from 'src/app/models/session.model';
+import { Group } from 'src/app/models/group.model';
 import { AuthentificationService } from 'src/app/services/authentification/authentification.service';
-import { SessionService } from 'src/app/services/session/session.service';
+import { GroupService } from 'src/app/services/group/group.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
-  selector: 'app-read-sessions',
-  templateUrl: './read-sessions.component.html',
-  styleUrls: ['./read-sessions.component.scss']
+  selector: 'app-read-groups',
+  templateUrl: './read-groups.component.html',
+  styleUrls: ['./read-groups.component.scss']
 })
 
-export class ReadSessionsComponent implements OnInit {
+export class ReadGroupsComponent implements OnInit {
   public name: string = "";
   public role!: string;
 
-  public sessions: Session[] = [];
-  public sessionUsernames: Map<number, string> = new Map<number, string>();
-  public sessionAttend: Map<number, boolean> = new Map<number, boolean>();
-  public sessionEditDelete: Map<number, boolean> = new Map<number, boolean>();
+  public groups: Group[] = [];
+  public groupUsernames: Map<number, string> = new Map<number, string>();
+  public groupJoin: Map<number, boolean> = new Map<number, boolean>();
+  public groupEditDelete: Map<number, boolean> = new Map<number, boolean>();
 
   constructor(private authentificationService: AuthentificationService,
     private userService: UserService,
-    private sessionService: SessionService,
+    private groupService: GroupService,
     private router: Router,
     private toast: NgToastService) {}
 
@@ -40,70 +40,69 @@ export class ReadSessionsComponent implements OnInit {
       this.role = response || roleToken;
     });
 
-    this.sessionService.getSessions()
+    this.groupService.getGroups()
     .subscribe(response => {
-      // GETTING THE SESSIONS
-      this.sessions = response;
+      // GETTING THE GROUPS
+      this.groups = response;
 
-      // GETTING THE USERNAME FOR THE SESSIONS
+      // GETTING THE USERNAME FOR THE GROUPS
       this.getUsernames();
 
-      // CHECKING IF THE SESSIONS COULD BE ATTENDED BY THE CURRENT USER
-      this.couldAttend();
+      // CHECKING IF THE GROUPS COULD BE JOINED BY THE CURRENT USER
+      this.couldJoin();
 
-      // CHECKING IF THE SESSIONS COULD BE EDITED BY THE CURRENT USER
+      // CHECKING IF THE GROUPS COULD BE EDITED BY THE CURRENT USER
       this.couldEditDelete();
     });
   }
 
   getUsernames() {
-    this.sessionUsernames.clear();
+    this.groupUsernames.clear();
 
-    this.sessions.forEach((session) => {
-      this.userService.getUsernameById(session.userId)
+    this.groups.forEach((group) => {
+      this.userService.getUsernameById(group.userId)
       .subscribe((response) => 
       {
         const username = response.username;
-        this.sessionUsernames.set(session.userId, username);
+        this.groupUsernames.set(group.userId, username);
       });
     });
   }
 
-  couldAttend() {
-    this.sessionAttend.clear();
+  couldJoin() {
+    this.groupJoin.clear();
 
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
       const userId = response.id;
 
-      this.sessions.forEach((session) => {
-        const userSession = {
+      this.groups.forEach((group) => {
+        const userGroup = {
           userId: userId,
-          sessionId: session.id
+          groupId: group.id
         };
 
-        this.sessionService.userInSession(userSession).
+        this.groupService.userInGroup(userGroup).
         subscribe((response) => {
-          console.log(response);
-          if (session.userId === userId || response)
-            this.sessionAttend.set(session.id, false);
-          else this.sessionAttend.set(session.id, true);
+          if (group.userId === userId || response)
+            this.groupJoin.set(group.id, false);
+          else this.groupJoin.set(group.id, true);
         });
       });      
     });
   }
 
-  attend(sessionId: number) {
+  join(groupId: number) {
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
       const userId = response.id;
 
-      const userSession = {
+      const userGroup = {
         userId: userId,
-        sessionId: sessionId
+        groupId: groupId
       };
 
-      this.sessionService.attendSession(userSession)
+      this.groupService.joinGroup(userGroup)
       .subscribe({
         next:(response) => 
         {
@@ -119,30 +118,30 @@ export class ReadSessionsComponent implements OnInit {
   }
 
   couldEditDelete() {
-    this.sessionEditDelete.clear();
+    this.groupEditDelete.clear();
 
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
       const userId = response.id;
 
-      this.sessions.forEach((session) => {
-        if (session.userId === userId)
-          this.sessionEditDelete.set(session.id, true);
-        else this.sessionEditDelete.set(session.id, false);
+      this.groups.forEach((group) => {
+        if (group.userId === userId)
+          this.groupEditDelete.set(group.id, true);
+        else this.groupEditDelete.set(group.id, false);
       });      
     });
   }
 
-  edit(sessionId: number) {
-    this.router.navigate(['editSession', sessionId]);
+  edit(groupId: number) {
+    this.router.navigate(['editGroup', groupId]);
   }
 
-  delete(sessionId: number) {
-    this.sessionService.deleteSession(sessionId)
+  delete(groupId: number) {
+    this.groupService.deleteGroup(groupId)
     .subscribe({
       next:(response) => 
       {
-        this.toast.success({ detail:"SUCCESS", summary: "Session Deleted Succesfully!", duration: 5000});
+        this.toast.success({ detail:"SUCCESS", summary: "Group Deleted Succesfully!", duration: 5000});
         window.location.reload();
       },
       error:(error) => 
@@ -154,6 +153,10 @@ export class ReadSessionsComponent implements OnInit {
 
   home() : void {
     this.router.navigate(['home']);
+  }
+
+  profile() : void {
+    this.router.navigate(['profile']);
   }
 
   logOut() : void {

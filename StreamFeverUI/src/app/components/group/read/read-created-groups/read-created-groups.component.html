@@ -1,0 +1,41 @@
+<div class="read-created-groups">
+    <div class="header">
+        <div class="header-logo" (click)="home()">
+            <img src="assets\icons\logo.png" alt="StreamFever Logo" class="logo">
+            <span class="text"> StreamFever </span>
+        </div>
+        <div class="header-button">
+            <div class="dropdown">
+                <button class="dropdown-button">
+                    {{name}}
+                    <span class="fa fa-caret-down"></span>
+                </button>
+                <div class="dropdown-content">
+                    <a id="a-profile" (click)="profile()">Profile</a>
+                    <a id="a-logout" (click)="logOut()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="groups">
+        <div class="group-container" *ngFor="let group of groups">
+            <div class="group">
+                <span class="name">{{ group.name }}</span>
+
+                <span class="fa fa-user username-icon"></span>
+                <span class="username">{{ groupUsernames.get(group.userId) }}</span>
+                
+                <div class="description-container">
+                    <span class="description">{{ group.description }}</span>
+                </div>
+                
+                <div class="icons">
+                    <span class="fa fa-pencil edit" (click)="edit(group.id)"></span>
+                    <span class="dot">○</span>
+                    <span class="fa fa-trash delete" (click)="delete(group.id)"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

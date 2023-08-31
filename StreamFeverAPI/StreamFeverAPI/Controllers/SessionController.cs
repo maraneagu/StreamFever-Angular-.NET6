@@ -69,6 +69,24 @@ namespace StreamFeverAPI.Controllers
             });
         }
 
+        [HttpGet("{userId}/created")]
+        public async Task<ActionResult<IEnumerable<Session>>> CreatedSessions([FromRoute] int userId)
+        {
+            var sessions = await _context.Sessions
+                .Where(s => s.UserId == userId)
+                .ToListAsync();
+
+            if (!sessions.Any())
+            {
+                return NotFound(new
+                {
+                    Message = "No Sessions Found!"
+                });
+            }
+
+            return Ok(sessions);
+        }
+
         [HttpPut("edit")]
         public async Task<IActionResult> EditSession([FromBody] Session sessionBody)
         {
@@ -152,6 +170,29 @@ namespace StreamFeverAPI.Controllers
             {
                 Message = "Session Attended Succesfully!"
             });
+        }
+
+        [HttpGet("{userId}/attended")]
+        public async Task<ActionResult<IEnumerable<Session>>> AttendedSessions([FromRoute] int userId)
+        {
+            var userSessions = await _context.UserSessions
+               .Where(us => us.UserId == userId)
+               .ToListAsync();
+
+            if (!userSessions.Any())
+            {
+                return NotFound(new
+                {
+                    Message = "No Sessions Joined!"
+                });
+            }
+
+            var sessionIds = userSessions.Select(us => us.SessionId).ToList();
+            var sessions = await _context.Sessions
+                .Where(s => sessionIds.Contains(s.Id))
+                .ToListAsync();
+
+            return Ok(sessions);
         }
 
         [HttpPost("user")]

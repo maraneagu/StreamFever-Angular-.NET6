@@ -50,6 +50,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['sessions']);
   }
 
+  profile() : void {
+    this.router.navigate(['profile']);
+  }
+
   logOut() {
     this.authentificationService.logOut();
   }

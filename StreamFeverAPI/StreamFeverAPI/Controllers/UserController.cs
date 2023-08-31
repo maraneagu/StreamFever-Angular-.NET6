@@ -31,6 +31,25 @@ namespace StreamFeverAPI.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUserById([FromRoute] int id)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound(new
+                {
+                    Message = "User Not Found!"
+                });
+            }
+
+            return Ok(new
+            {
+                User = user
+            });
+        }
+
         [HttpGet("{id}/username")]
         public async Task<ActionResult<string>> GetUsernameById([FromRoute] int id)
         {

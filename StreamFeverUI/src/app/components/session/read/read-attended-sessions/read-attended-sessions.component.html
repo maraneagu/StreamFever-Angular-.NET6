@@ -11,7 +11,7 @@
                     <span class="fa fa-caret-down"></span>
                 </button>
                 <div class="dropdown-content">
-                    <a id="a-profile" href="#">Profile</a>
+                    <a id="a-profile" (click)="profile()">Profile</a>
                     <a id="a-logout" (click)="logOut()">Logout</a>
                 </div>
             </div>
@@ -40,15 +40,7 @@
                     <span class="description">{{ session.description }}</span>
                 </div>
 
-                <button class="attend-button" *ngIf="sessionAttend.get(session.id)" (click)="attend(session.id)">Attend</button>
-                
-                <div class="icons" *ngIf="sessionEditDelete.get(session.id)">
-                    <span class="fa fa-pencil edit" (click)="edit(session.id)"></span>
-                    <span class="dot">○</span>
-                    <span class="fa fa-trash delete" (click)="delete(session.id)"></span>
-                </div>
-
-                <div class="icons" *ngIf="!sessionEditDelete.get(session.id) && !sessionAttend.get(session.id)">
+                <div class="icons">
                     <span class="fa fa-ticket"></span>
                 </div>
             </div>

@@ -1,0 +1,57 @@
+<div class="read-sessions">
+    <div class="header">
+        <div class="header-logo" (click)="home()">
+            <img src="assets\icons\logo.png" alt="StreamFever Logo" class="logo">
+            <span class="text"> StreamFever </span>
+        </div>
+        <div class="header-button">
+            <div class="dropdown">
+                <button class="dropdown-button">
+                    {{name}}
+                    <span class="fa fa-caret-down"></span>
+                </button>
+                <div class="dropdown-content">
+                    <a id="a-profile" (click)="profile()">Profile</a>
+                    <a id="a-logout" (click)="logOut()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sessions">
+        <div class="session-container" *ngFor="let session of sessions">
+            <div class="session">
+                <span class="title">{{ session.title }}</span>
+
+                <span class="fa fa-user username-icon"></span>
+                <span class="username">{{ sessionUsernames.get(session.userId) }}</span>
+
+                <div class="date-time-icons">
+                    <div class="fa fa-calendar date">
+                        <span class="text">{{ session.date }}</span>
+                    </div>
+
+                    <div class="fa fa-star time">
+                        <span class="text">{{ session.time }}</span>
+                    </div>
+                </div>
+                
+                <div class="description-container">
+                    <span class="description">{{ session.description }}</span>
+                </div>
+
+                <button class="attend-button" *ngIf="sessionAttend.get(session.id)" (click)="attend(session.id)">Attend</button>
+                
+                <div class="icons" *ngIf="sessionEditDelete.get(session.id)">
+                    <span class="fa fa-pencil edit" (click)="edit(session.id)"></span>
+                    <span class="dot">○</span>
+                    <span class="fa fa-trash delete" (click)="delete(session.id)"></span>
+                </div>
+
+                <div class="icons" *ngIf="!sessionEditDelete.get(session.id) && !sessionAttend.get(session.id)">
+                    <span class="fa fa-ticket"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

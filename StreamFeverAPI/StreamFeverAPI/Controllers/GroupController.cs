@@ -70,6 +70,24 @@ namespace StreamFeverAPI.Controllers
             });
         }
 
+        [HttpGet("{userId}/created")]
+        public async Task<ActionResult<IEnumerable<Group>>> CreatedGroups([FromRoute] int userId)
+        {
+            var groups = await _context.Groups
+                .Where(g => g.UserId == userId)
+                .ToListAsync();
+
+            if (!groups.Any())
+            {
+                return NotFound(new
+                {
+                    Message = "No Groups Created!"
+                });
+            }
+
+            return Ok(groups);
+        }
+
         [HttpPut("edit")]
         public async Task<IActionResult> EditGroup([FromBody] Group groupBody)
         {
@@ -151,6 +169,29 @@ namespace StreamFeverAPI.Controllers
             {
                 Message = "Group Joined Succesfully!"
             });
+        }
+
+        [HttpGet("{userId}/joined")]
+        public async Task<ActionResult<IEnumerable<Group>>> JoinedGroups([FromRoute] int userId)
+        {
+            var userGroups = await _context.UserGroups
+                .Where(ug => ug.UserId == userId)
+                .ToListAsync();
+
+            if (!userGroups.Any())
+            {
+                return NotFound(new
+                {
+                    Message = "No Groups Joined!"
+                });
+            }
+
+            var groupIds = userGroups.Select(ug => ug.GroupId).ToList();
+            var groups = await _context.Groups
+                .Where(g => groupIds.Contains(g.Id))
+                .ToListAsync();
+
+            return Ok(groups);
         }
 
         [HttpPost("user")]

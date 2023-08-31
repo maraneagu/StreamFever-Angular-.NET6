@@ -23,6 +23,10 @@ export class SessionService {
     return this.http.post<any>(`${this.baseUrl}create`, sessionBody, httpOptions);
   }
 
+  getCreatedSessions(userId: any) {
+    return this.http.get<any>(`${this.baseUrl}${userId}/created`);
+  }
+
   editSession(sessionBody: any) {
     return this.http.put<any>(`${this.baseUrl}edit`, sessionBody);
   }
@@ -33,6 +37,10 @@ export class SessionService {
 
   attendSession(userSessionBody: any) {
     return this.http.post<any>(`${this.baseUrl}attend`, userSessionBody);
+  }
+
+  getAttendedSessions(userId: any) {
+    return this.http.get<any>(`${this.baseUrl}${userId}/attended`);
   }
 
   userInSession(userSessionBody: any) {

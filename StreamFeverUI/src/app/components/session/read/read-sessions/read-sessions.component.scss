@@ -1,0 +1,148 @@
+.read-sessions {
+    background: linear-gradient(to bottom, rgb(39, 3, 94), rgb(26, 2, 59));    
+    min-height: 150vh;
+
+    font-family: Jost;
+
+    .header-logo {
+        cursor: pointer;
+    }
+
+    .sessions {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(500px, 2fr));
+        grid-gap: 60px;
+        margin: 100px 170px;
+
+        .session-container {
+            margin-bottom: 60px;
+
+            .session {
+                background: linear-gradient(to bottom, rgb(129, 138, 226), #4b55b1);
+    
+                display: flex;
+                flex-direction: column;
+            
+                height: auto;
+                padding: 0px 45px;
+                
+                border: 3px solid white;
+                border-radius: 8px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+        
+                cursor: pointer;
+    
+                .title {
+                    width: 100%;
+                    color: rgb(26, 2, 59);
+        
+                    font-size: 27px;
+                    font-weight: 500;
+                    text-align: center;
+                    word-wrap: break-word;
+        
+                    margin-top: 20px;
+                    margin-bottom: 7px;
+                }
+        
+                .username {
+                    color: rgb(39, 3, 94);
+                    font-size: 12px;
+                    font-style: italic;
+                    font-weight: 500;
+                    text-align: center;    
+                }
+    
+                .username-icon {
+                    color: rgb(39, 3, 94);
+                    font-size: 12px;
+                    text-align: center;
+    
+                    margin-top: 12px;
+                }
+
+                .date-time-icons {
+                    color: rgb(26, 2, 59);
+                    font-size: 15px;
+                    text-align: center;
+                    
+                    margin-top: 12px;
+
+                    .date {
+                        margin-right: 15px;
+                    }
+
+                    .text {
+                        font-family: Jost;
+                        font-weight: 500;
+                        margin-left: 5px;
+                    }
+                }
+    
+                .description-container {
+                    max-width: 100%; 
+                    
+                    margin-top: 33px;
+                    margin-bottom: 27px;
+                    
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    text-align: center; 
+                    
+                    .description {
+                        color:white;
+                        font-size: 16px;
+                        font-style: italic;
+                        font-weight: 500;
+                    }
+                }
+    
+                .attend-button {
+                    width: 100%;
+    
+                    background-color: rgb(39, 3, 94);
+                    color: rgb(208, 210, 235);
+                    font-size: 13px;
+    
+                    border: none;
+                    border-radius: 15px;
+                    margin-bottom: 25px;
+    
+                    &:hover {
+                        background-color:  #4e57a6;
+                        color: rgb(208, 210, 235);
+                        font-weight: 500;
+                    }
+                }
+    
+                .icons {
+                    color: rgb(26, 2, 59);
+                    font-size: 17px;
+                    text-align: center;
+    
+                    margin-bottom: 25px;
+                    cursor: pointer;
+    
+                    .edit {
+                        margin-right: 25px;
+                    }
+    
+                    .dot {
+                        margin-right: 25px;
+                    }
+                }
+            }
+    
+            @media (max-width: 1000px) {
+                .session-container {
+                    flex: 0 0 calc(50% - 10px);
+                }
+            }
+        }
+    }
+
+    @media (max-height: 100vh) {
+        height: 100vh;
+    }
+}

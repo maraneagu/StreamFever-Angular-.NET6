@@ -24,6 +24,10 @@ export class GroupService {
     return this.http.post<any>(`${this.baseUrl}create`, groupBody, httpOptions);
   }
 
+  getCreatedGroups(userId: any) {
+    return this.http.get<any>(`${this.baseUrl}${userId}/created`);
+  }
+
   editGroup(groupBody: any) {
     return this.http.put<any>(`${this.baseUrl}edit`, groupBody);
   }
@@ -34,6 +38,10 @@ export class GroupService {
 
   joinGroup(userGroupBody: any) {
     return this.http.post<any>(`${this.baseUrl}join`, userGroupBody);
+  }
+
+  getJoinedGroups(userId: any) {
+    return this.http.get<any>(`${this.baseUrl}${userId}/joined`);
   }
 
   userInGroup(userGroupBody: any) {
