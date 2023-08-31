@@ -9,6 +9,7 @@ import { CreateSessionComponent } from './components/session/create-session/crea
 import { ReadGroupsComponent } from './components/group/read-groups/read-groups.component';
 import { ReadSessionsComponent } from './components/session/read-sessions/read-sessions.component';
 import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
+import { EditSessionComponent } from './components/session/edit-session/edit-session.component';
 
 // DEFINING THE ROUTES FOR THE APP
 const routes: Routes = [
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'createSession',
     component: CreateSessionComponent
+  },
+  {
+    path: 'editSession/:sessionId',
+    component: EditSessionComponent
   },
   {
     path: 'sessions',

@@ -1,0 +1,42 @@
+.edit-session {
+    background: linear-gradient(to bottom, rgb(39, 3, 94), rgb(26, 2, 59));    
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    input[type='date'],
+    input[type='time'] {
+        background-color: rgb(208, 210, 235);
+        color: rgb(97, 97, 97);
+
+        padding: 0px 10px 0 10px;
+        margin-left: 10px;
+
+        border-color: #616ccd;
+        border-radius: 30px;
+    }
+
+    input[type='date']::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+    }
+    
+    input[type='time']::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+    }
+
+    .button {
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+            pointer-events: none;
+
+            &:hover {
+                background-color: #ccc; 
+                color: #666;
+            }
+        }
+    }
+}

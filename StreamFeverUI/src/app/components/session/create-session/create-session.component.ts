@@ -36,7 +36,7 @@ export class CreateSessionComponent {
         next:(response) => 
         {
           this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
-          this.router.navigate(['home'] );
+          this.router.navigate(['sessions'] );
           this.createSessionForm.reset();
         },
         error:(error) => 

@@ -42,10 +42,10 @@ export class ReadGroupsComponent implements OnInit {
 
     this.groupService.getGroups()
     .subscribe(response => {
-      // GETTING THE GROUP
+      // GETTING THE GROUPS
       this.groups = response;
 
-      // GETTING THE USERNAME FOR THAT GROUP
+      // GETTING THE USERNAME FOR THE GROUPS
       this.getUsernames();
 
       // CHECKING IF THE GROUPS COULD BE JOINED BY THE CURRENT USER
@@ -149,8 +149,6 @@ export class ReadGroupsComponent implements OnInit {
         this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
       }
     });
-
-    this.router.navigate(['groups']);
   }
 
   home() : void {

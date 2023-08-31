@@ -23,6 +23,26 @@ export class SessionService {
     return this.http.post<any>(`${this.baseUrl}create`, sessionBody, httpOptions);
   }
 
+  editSession(sessionBody: any) {
+    return this.http.put<any>(`${this.baseUrl}edit`, sessionBody);
+  }
+
+  deleteSession(sessionId: any) {
+    return this.http.delete(`${this.baseUrl}delete?id=${sessionId}`);
+  }
+
+  attendSession(userSessionBody: any) {
+    return this.http.post<any>(`${this.baseUrl}attend`, userSessionBody);
+  }
+
+  userInSession(userSessionBody: any) {
+    return this.http.post<any>(`${this.baseUrl}user`, userSessionBody);
+  }
+
+  getSession(sessionId: number){
+    return this.http.get<any>(`${this.baseUrl}${sessionId}`);
+  }
+
   getSessions() {
     return this.http.get<any>(this.baseUrl);
   }
