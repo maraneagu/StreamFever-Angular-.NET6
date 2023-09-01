@@ -26,10 +26,10 @@
         .name {
             color: white;
             font-size: 27px;
-            margin-bottom: 7px;
         }
     
         .username {
+            font-style: italic;
             .icon {
                 margin-right: 7px;
             }
@@ -73,7 +73,7 @@
         }
     }
     
-    .ticket-text {
+    .ticket {
         display: flex;
         justify-content: center;
     

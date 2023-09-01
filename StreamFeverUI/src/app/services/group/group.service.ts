@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthentificationService } from '../authentification/authentification.service';
-import { UserGroup } from 'src/app/models/user-group.model';
 
 @Injectable({
   providedIn: 'root'

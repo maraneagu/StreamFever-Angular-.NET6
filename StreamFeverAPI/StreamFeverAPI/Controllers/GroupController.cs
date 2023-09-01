@@ -24,7 +24,7 @@ namespace StreamFeverAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Group>> GetGroupById([FromRoute] int id)
+        public async Task<ActionResult<Group>> GetGroup([FromRoute] int id)
         {
             var group = await _context.Groups.FirstOrDefaultAsync(g => g.Id == id);
 

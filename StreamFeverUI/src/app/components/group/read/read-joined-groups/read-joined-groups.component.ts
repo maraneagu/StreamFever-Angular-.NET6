@@ -63,6 +63,10 @@ export class ReadJoinedGroupsComponent {
     });
   }
 
+  posts(groupId: number) : void {
+    this.router.navigate(['posts', groupId]);
+  }
+
   home() : void {
     this.router.navigate(['home']);
   }

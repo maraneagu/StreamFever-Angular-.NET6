@@ -23,7 +23,7 @@ namespace StreamFeverAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Session>> GetSessionById([FromRoute] int id)
+        public async Task<ActionResult<Session>> GetSession([FromRoute] int id)
         {
             var session = await _context.Sessions.FirstOrDefaultAsync(s => s.Id == id);
 

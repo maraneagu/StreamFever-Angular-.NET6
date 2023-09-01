@@ -32,7 +32,7 @@ namespace StreamFeverAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUserById([FromRoute] int id)
+        public async Task<ActionResult<User>> GetUser([FromRoute] int id)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 

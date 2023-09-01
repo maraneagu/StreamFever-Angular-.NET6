@@ -1,20 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, mapToCanActivate } from '@angular/router';
+import { authentificationGuard } from './guards/authentification.guard';
+
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+
 import { HomeComponent } from './components/home/home.component';
-import { authentificationGuard } from './guards/authentification.guard';
-import { CreateGroupComponent } from './components/group/create-group/create-group.component';
-import { CreateSessionComponent } from './components/session/create-session/create-session.component';
-import { ReadGroupsComponent } from './components/group/read/read-groups/read-groups.component';
-import { ReadSessionsComponent } from './components/session/read/read-sessions/read-sessions.component';
-import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
-import { EditSessionComponent } from './components/session/edit-session/edit-session.component';
 import { ProfileComponent } from './components/profile/profile.component';
+
+import { CreateGroupComponent } from './components/group/create-group/create-group.component';
+import { ReadGroupsComponent } from './components/group/read/read-groups/read-groups.component';
+import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
 import { ReadCreatedGroupsComponent } from './components/group/read/read-created-groups/read-created-groups.component';
-import { ReadCreatedSessionsComponent } from './components/session/read/read-created-sessions/read-created-sessions.component';
 import { ReadJoinedGroupsComponent } from './components/group/read/read-joined-groups/read-joined-groups.component';
+
+import { CreateSessionComponent } from './components/session/create-session/create-session.component';
+import { ReadSessionsComponent } from './components/session/read/read-sessions/read-sessions.component';
+import { EditSessionComponent } from './components/session/edit-session/edit-session.component';
+import { ReadCreatedSessionsComponent } from './components/session/read/read-created-sessions/read-created-sessions.component';
 import { ReadAttendedSessionsComponent } from './components/session/read/read-attended-sessions/read-attended-sessions.component';
+
+import { ReadPostsComponent } from './components/post/read-posts/read-posts.component';
+import { CreatePostComponent } from './components/post/create-post/create-post.component';
+import { EditPostComponent } from './components/post/edit-post/edit-post.component';
 
 // DEFINING THE ROUTES FOR THE APP
 const routes: Routes = [
@@ -60,6 +68,21 @@ const routes: Routes = [
   {
     path: 'groups',
     component: ReadGroupsComponent,
+    canActivate: [authentificationGuard]
+  },
+  {
+    path: 'createPost/:groupId',
+    component: CreatePostComponent,
+    canActivate: [authentificationGuard]
+  },
+  {
+    path: 'editPost/:postId',
+    component: EditPostComponent,
+    canActivate: [authentificationGuard]
+  },
+  {
+    path: 'posts/:groupId',
+    component: ReadPostsComponent,
     canActivate: [authentificationGuard]
   },
   {

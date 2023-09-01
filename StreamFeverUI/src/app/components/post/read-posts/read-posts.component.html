@@ -1,0 +1,49 @@
+<div class="read-groups">
+    <div class="header">
+        <div class="header-logo" (click)="home()">
+            <img src="assets\icons\logo.png" alt="StreamFever Logo" class="logo">
+            <span class="text"> StreamFever </span>
+        </div>
+        <div class="header-button">
+            <div class="dropdown">
+                <button class="dropdown-button">
+                    {{name}}
+                    <span class="fa fa-caret-down"></span>
+                </button>
+                <div class="dropdown-content">
+                    <a id="a-profile" (click)="profile()">Profile</a>
+                    <a id="a-logout" (click)="logOut()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="group" *ngIf="group">
+        <span class="name">{{ group.name }}</span>
+
+        <div class="username">
+            <span class="fa fa-user icon"></span>
+            <span class="text">{{ groupUsername }}</span>
+        </div>
+
+        <button class="fa fa-envelope post-button" (click)="createPost()" data-tooltip="Create a Post" *ngIf="isGroupManager"></button>
+    
+        <div class="posts" *ngFor="let post of posts">
+                <div class="post">
+                    <div class="date-icon">
+                        <div class="fa fa-calendar date">
+                            <span class="text">{{ post.date }}</span>
+                        </div>
+                    </div>
+                    
+                    <span class="description">{{ post.description }}</span>
+                    
+                    <div class="icons" *ngIf="isGroupManager">
+                        <span class="fa fa-pencil edit" (click)="edit(post.id)"></span>
+                        <span class="dot">○</span>
+                        <span class="fa fa-trash delete" (click)="delete(post.id)"></span>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
