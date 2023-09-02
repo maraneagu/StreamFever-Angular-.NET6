@@ -69,11 +69,11 @@ The <i>Edit</i> button will remain disabled, as long as the original values for 
 ### Posts of a Group
 
 
-When clicking on the <i>name</i> of a group on the <i>Groups</i> page, are you sent to the dedicated page of that group, where you are able to see the posts added. If you are the manager of that specific group, are you able to add new posts, and edit them, as well.
+When clicking on the <i>name</i> of a group on the <i>Groups</i> page, are you sent to the dedicated page of that group, where you are able to see the posts added. If you are the manager of that specific group, are you able to add new posts, and edit them, as well. You are also able to edit and delete the group.
 
 
 
-![Screenshot 2023-09-02 210251](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/c2e2f154-85b3-4e27-a738-a170046971af)
+![Screenshot 2023-09-02 211817](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/1ef8bd1c-a5b6-44e5-a857-bc226e21c478)
 <br>
 
 ### Comments of a Post
