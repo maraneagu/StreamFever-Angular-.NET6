@@ -48,9 +48,9 @@
                     <span class="fa fa-trash delete" (click)="delete(session.id)"></span>
                 </div>
 
-                <div class="icons" *ngIf="!sessionEditDelete.get(session.id) && !sessionAttend.get(session.id)">
-                    <span class="fa fa-ticket"></span>
-                </div>
+                <button class="unattend-button" *ngIf="!sessionEditDelete.get(session.id) && !sessionAttend.get(session.id)" (click)="unattend(session.id)">
+                    Unattend
+                </button>
             </div>
         </div>
     </div>

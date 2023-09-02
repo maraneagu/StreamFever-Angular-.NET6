@@ -30,9 +30,9 @@
                     <span class="description">{{ group.description }}</span>
                 </div>
 
-                <div class="icons">
-                    <span class="fa fa-ticket"></span>
-                </div>
+                <button class="leave-button" (click)="leave(group.id)">
+                    Leave
+                </button>
             </div>
         </div>
     </div>

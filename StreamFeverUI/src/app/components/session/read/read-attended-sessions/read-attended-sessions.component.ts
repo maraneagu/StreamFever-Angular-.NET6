@@ -43,12 +43,18 @@ export class ReadAttendedSessionsComponent {
       this.userId = response.id;
 
       this.sessionService.getAttendedSessions(response.id)
-      .subscribe(response => {
-        // GETTING THE SESSIONS
-        this.sessions = response;
+      .subscribe({
+        next:(response) => {
+          // GETTING THE SESSIONS
+          this.sessions = response;
 
-        // GETTING THE USERNAME FOR THE SESSIONS
-        this.getUsernames();
+          // GETTING THE USERNAME FOR THE SESSIONS
+          this.getUsernames();
+        },
+        error:(error) => 
+        {
+          this.router.navigate(['profile', this.userId]);
+        }
       });
     })
   }
@@ -63,6 +69,21 @@ export class ReadAttendedSessionsComponent {
         const username = response.username;
         this.sessionUsernames.set(session.userId, username);
       });
+    });
+  }
+
+  unattend(sessionId: number) {
+    this.sessionService.unattendSession(this.userId, sessionId)
+    .subscribe({
+      next:(response) => 
+      {
+        this.toast.success({ detail:"SUCCESS", summary: "Session Unattended Succesfully!", duration: 5000});
+        window.location.reload(); 
+      },
+      error:(error) => 
+      {
+        this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
+      }
     });
   }
 

@@ -40,9 +40,9 @@
                     <span class="description">{{ session.description }}</span>
                 </div>
 
-                <div class="icons">
-                    <span class="fa fa-ticket"></span>
-                </div>
+                <button class="unattend-button" (click)="unattend(session.id)">
+                    Unattend
+                </button>
             </div>
         </div>
     </div>

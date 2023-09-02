@@ -39,6 +39,10 @@ export class GroupService {
     return this.http.post<any>(`${this.baseUrl}join`, userGroupBody);
   }
 
+  leaveGroup(userId: number, groupId: number) {
+    return this.http.delete(`${this.baseUrl}leave/${userId}/${groupId}`);
+  }
+
   getJoinedGroups(userId: any) {
     return this.http.get<any>(`${this.baseUrl}${userId}/joined`);
   }

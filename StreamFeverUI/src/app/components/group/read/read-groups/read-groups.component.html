@@ -38,9 +38,9 @@
                     <span class="fa fa-trash delete" (click)="delete(group.id)"></span>
                 </div>
 
-                <div class="icons" *ngIf="!groupEditDelete.get(group.id) && !groupJoin.get(group.id)">
-                    <span class="fa fa-ticket"></span>
-                </div>
+                <button class="leave-button" *ngIf="!groupEditDelete.get(group.id) && !groupJoin.get(group.id)" (click)="leave(group.id)">
+                    Leave
+                </button>
             </div>
         </div>
     </div>

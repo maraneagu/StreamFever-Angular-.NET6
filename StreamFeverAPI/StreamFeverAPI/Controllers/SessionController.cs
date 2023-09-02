@@ -211,6 +211,29 @@ namespace StreamFeverAPI.Controllers
             return Ok(sessions);
         }
 
+        [HttpDelete("unattend/{userId}/{sessionId}")]
+        public async Task<IActionResult> UnattendSession([FromRoute] int userId, int sessionId)
+        {
+            var userSession = await _context.UserSessions.
+                FirstOrDefaultAsync(us => us.UserId == userId && us.SessionId == sessionId);
+
+            if (userSession == null)
+            {
+                return NotFound(new
+                {
+                    Message = "User In Session Not Found!"
+                });
+            }
+
+            _context.UserSessions.Remove(userSession);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = "Session Unattended Succesfully!"
+            });
+        }
+
         [HttpPost("user")]
         public async Task<ActionResult<bool>> UserInSession([FromBody] UserSession userSessionBody)
         {

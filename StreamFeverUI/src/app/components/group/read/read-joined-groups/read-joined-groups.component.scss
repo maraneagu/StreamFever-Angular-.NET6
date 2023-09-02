@@ -77,14 +77,23 @@
                         font-style: italic;
                     }
                 }
+
+                .leave-button {
+                    width: 100%;
     
-                .icons {
+                    background-color: rgb(242, 124, 124);
                     color: white;
-                    font-size: 14px;
-                    text-align: center;
+                    font-size: 13px;
     
-                    margin-bottom: 37px;
-                    cursor: pointer;
+                    border: none;
+                    border-radius: 15px;
+                    margin-bottom: 35px;
+    
+                    &:hover {
+                        background-color: rgb(208, 210, 235);
+                        color: red;
+                        font-weight: 500;
+                    }
                 }
             }
     

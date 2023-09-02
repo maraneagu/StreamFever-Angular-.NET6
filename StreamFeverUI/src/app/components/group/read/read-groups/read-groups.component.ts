@@ -116,6 +116,21 @@ export class ReadGroupsComponent implements OnInit {
     });
   }
 
+  leave(groupId: number) {
+    this.groupService.leaveGroup(this.userId, groupId)
+    .subscribe({
+      next:(response) => 
+      {
+        this.toast.success({ detail:"SUCCESS", summary: "Group Left Succesfully!", duration: 5000});
+        window.location.reload(); 
+      },
+      error:(error) => 
+      {
+        this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
+      }
+    });
+  }
+
   couldEditDelete() {
     this.groupEditDelete.clear();
 

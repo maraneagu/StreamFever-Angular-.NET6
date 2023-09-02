@@ -39,6 +39,10 @@ export class SessionService {
     return this.http.post<any>(`${this.baseUrl}attend`, userSessionBody);
   }
 
+  unattendSession(userId: number, sessionId: number) {
+    return this.http.delete(`${this.baseUrl}unattend/${userId}/${sessionId}`);
+  }
+
   getAttendedSessions(userId: any) {
     return this.http.get<any>(`${this.baseUrl}${userId}/attended`);
   }

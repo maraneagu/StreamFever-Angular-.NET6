@@ -22,7 +22,8 @@ export class ReadJoinedGroupsComponent {
   constructor(private authentificationService: AuthentificationService,
     private userService: UserService,
     private groupService: GroupService,
-    private router: Router) {}
+    private router: Router,
+    private toast: NgToastService) {}
 
   ngOnInit() {
     this.userService.getName()
@@ -42,12 +43,18 @@ export class ReadJoinedGroupsComponent {
       this.userId = response.id;
 
       this.groupService.getJoinedGroups(response.id)
-      .subscribe(response => {
-        // GETTING THE GROUPS
-        this.groups = response;
+      .subscribe({
+        next:(response) => {
+          // GETTING THE GROUPS
+          this.groups = response;
 
-        // GETTING THE USERNAME FOR THE GROUPS
-        this.getUsernames();
+          // GETTING THE USERNAME FOR THE SESSIONS
+          this.getUsernames();
+        },
+        error:(error) => 
+        {
+          this.router.navigate(['profile', this.userId]);
+        }
       });
     });
   }
@@ -67,6 +74,21 @@ export class ReadJoinedGroupsComponent {
 
   posts(groupId: number) : void {
     this.router.navigate(['posts', groupId]);
+  }
+
+  leave(groupId: number) {
+    this.groupService.leaveGroup(this.userId, groupId)
+    .subscribe({
+      next:(response) => 
+      {
+        this.toast.success({ detail:"SUCCESS", summary: "Group Left Succesfully!", duration: 5000});
+        window.location.reload(); 
+      },
+      error:(error) => 
+      {
+        this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
+      }
+    });
   }
 
   home() : void {

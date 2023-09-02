@@ -117,6 +117,21 @@ export class ReadSessionsComponent implements OnInit {
     })
   }
 
+  unattend(sessionId: number) {
+    this.sessionService.unattendSession(this.userId, sessionId)
+    .subscribe({
+      next:(response) => 
+      {
+        this.toast.success({ detail:"SUCCESS", summary: "Session Unattended Succesfully!", duration: 5000});
+        window.location.reload(); 
+      },
+      error:(error) => 
+      {
+        this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
+      }
+    });
+  }
+
   couldEditDelete() {
     this.sessionEditDelete.clear();
 

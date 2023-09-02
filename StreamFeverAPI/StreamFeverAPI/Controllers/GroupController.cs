@@ -194,6 +194,29 @@ namespace StreamFeverAPI.Controllers
             return Ok(groups);
         }
 
+        [HttpDelete("leave/{userId}/{groupId}")]
+        public async Task<IActionResult> LeaveGroup([FromRoute] int userId, int groupId)
+        {
+            var userGroup = await _context.UserGroups.
+                FirstOrDefaultAsync(ug => ug.UserId == userId && ug.GroupId == groupId);
+
+            if (userGroup == null)
+            {
+                return NotFound(new
+                {
+                    Message = "User In Group Not Found!"
+                });
+            }
+
+            _context.UserGroups.Remove(userGroup);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = "Group Left Succesfully!"
+            });
+        }
+
         [HttpPost("user")]
         public async Task<ActionResult<bool>> UserInGroup([FromBody] UserGroup userGroupBody)
         {
