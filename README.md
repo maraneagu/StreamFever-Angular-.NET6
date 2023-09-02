@@ -1,6 +1,6 @@
 # StreamFever-Angular-.NET6
 
-![twitter_header_photo_2](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/c9d4b7f3-8111-4b8a-a457-0b88fe12bf98)
+![twitter_header_photo_2](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/1a1cbcf6-00ee-489b-bbfc-9f2d40728484)
 
 
 <i>StreamFever</i> is an application that is developed in .NET6 and Angular regarding streaming groups or sessions. Through this application, a user can be a participant to the groups / sessions, thus only being able to join or attend them, or a group manager, creating groups, sessions or posts.
@@ -11,13 +11,13 @@
 On the <i>login</i> page, you are able to log into the application using your username and password.
 
 
-![Screenshot 2023-09-02 114739](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/714971e1-2255-4130-95e6-4502f78573dc)
+![Screenshot 2023-09-02 114739](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/b0f55bb4-99b8-46c8-a3ba-0c6c12b4644c)
 
 <br>
 
 On the <i>signup</i> page, you can create your account by setting your <i>first name</i>, <i>last name</i>, <i>email</i>, <i>username</i>, <i>role</i> (group participant or group manager) and <i>password</i>.
 
-![Screenshot 2023-09-02 114759](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/d4c53a28-ebf0-405d-a8c8-3d002da34106)
+![Screenshot 2023-09-02 114759](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/b7dedc26-5565-472a-82f1-7c71003357b9)
 
 <br>
 
@@ -27,14 +27,14 @@ On the <i>signup</i> page, you can create your account by setting your <i>first 
 <i>Participant</i>
 
 
-![Screenshot 2023-09-02 114714](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/a945a584-d294-4f1e-8b3d-65ccb5541c13)
+![Screenshot 2023-09-02 114714](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/00d4d304-433f-49eb-9f56-96cb2320b678)
 
 <br>
 
 <i>Manager</i>
 
 
-![Screenshot 2023-09-02 114908](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/4ddb8047-aeb9-44c6-a6fb-0f13caaa4e30)
+![Screenshot 2023-09-02 114908](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/ea2a8727-7c7a-4cbb-ad15-869e0bcf8682)
 
 <br>
 
@@ -44,7 +44,7 @@ On the <i>signup</i> page, you can create your account by setting your <i>first 
 On the groups page, you are able to edit the groups you have created, or see the groups you can join or have joined already (the ones that have the 🎟 ticket icon).
 
 
-![Screenshot 2023-09-02 121612](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/75ecde40-478e-4143-8670-a4dcd3991274)
+![Screenshot 2023-09-02 121612](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/b611f926-be89-43c0-b041-6f94200dc891)
 
 <br>
 
@@ -52,7 +52,7 @@ On the groups page, you are able to edit the groups you have created, or see the
 
 When creating a group, you are sent to a specific form, in which you need to fill out the name and the description of the group.
 
-![Screenshot 2023-09-02 115000](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/ae9e6ee9-fa16-4898-9c45-b50a6ab2ab54)
+![Screenshot 2023-09-02 115000](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/55da341a-53e5-43dd-b842-36901b570cf9)
 
 <br>
 
@@ -62,7 +62,7 @@ When creating a group, you are sent to a specific form, in which you need to fil
 The <i>Edit</i> button will remain disabled, as long as the original values for the name and the description don't change.
 
 
-![Screenshot 2023-09-02 115055](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/63c042be-fd73-4c02-aa52-4cd36f795e04)
+![Screenshot 2023-09-02 115055](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/b53e990d-0498-470c-b6ca-d78af8d0c257)
 
 <br>
 
@@ -73,7 +73,7 @@ When clicking on the <i>name</i> of a group on the <i>Groups</i> page, are you s
 
 
 
-![Screenshot 2023-09-02 115328](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/12c603cf-9b3e-437d-a97d-81d4b98b5a3b)
+![Screenshot 2023-09-02 115328](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/2a737c87-29de-4038-b835-d53b78687bf2)
 
 <br>
 
@@ -83,7 +83,7 @@ When clicking on the <i>name</i> of a group on the <i>Groups</i> page, are you s
 On the <i>Sessions</i> page, you are able to edit the sessions you have created, or see the sessions you can attend or have attended already (the ones that have the 🎟 ticket icon).
 
 
-![Screenshot 2023-09-02 123142](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/a0c7a755-d281-474d-b6b6-3f2c205b70a5)
+![Screenshot 2023-09-02 123142](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/eb46e109-4f37-475c-9bc0-8b745283f6b2)
 
 <br>
 
@@ -91,7 +91,7 @@ On the <i>Sessions</i> page, you are able to edit the sessions you have created,
 
 When creating a session, you are sent to a specific form, in which you need to fill out the title and the description of the session, as well as the date and time when the session will take place.
 
-![Screenshot 2023-09-02 115113](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/a6edd1c5-823e-4b8a-8fd7-6bf454aca146)
+![Screenshot 2023-09-02 115113](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/f681a6ae-b13a-41bc-a4e2-c124c729f388)
 
 <br>
 
@@ -101,15 +101,20 @@ When creating a session, you are sent to a specific form, in which you need to f
 The <i>Edit</i> button will remain disabled, as long as the original values for the title, description, date and time don't change.
 
 
-![Screenshot 2023-09-02 115210](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/704cdaa2-3ea7-4958-98c9-9fee6a62fed8)
+![Screenshot 2023-09-02 115210](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/fc5c1d5d-f151-46db-ae92-3ce2a7a399de)
 
 <br>
 
 ## Profile
 
+<i>Participant</i>
+
+![image](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/b7e8a009-d290-4834-b881-27efa1736311)
+
+
 <i>Manager</i>
 
-![Screenshot 2023-09-02 115227](https://github.com/maraneagu/Streamfever-Angular-.NET6/assets/93272424/5de1eb44-03c8-400b-8349-4e5d19a862cc)
+![Screenshot 2023-09-02 115227](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/e0aba219-3ed7-43c1-9792-6147c9515e96)
 
 
 
