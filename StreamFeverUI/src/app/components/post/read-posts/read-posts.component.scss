@@ -39,6 +39,22 @@
             }
         }
 
+        .edit-delete-group {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 40px;      
+            cursor: pointer;
+
+            .edit {
+                margin-right: 25px;
+            }
+
+            .dot {
+                margin-right: 25px;
+            }
+        }
+
         .post-button {
             width: 100%;
 
@@ -101,7 +117,7 @@
                 border-radius: 8px;
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
 
-                .group-icons {
+                .post-icons {
                     display: flex;
                     justify-content: space-between;
 
@@ -117,7 +133,7 @@
                         font-weight: 500;
                     }
 
-                    .edit-delete {
+                    .edit-delete-post {
                         text-align: center;        
                         cursor: pointer;
         

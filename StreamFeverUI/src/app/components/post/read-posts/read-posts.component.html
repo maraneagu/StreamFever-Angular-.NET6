@@ -26,18 +26,24 @@
             <span class="text">{{ groupUsername }}</span>
         </div>
 
+        <div class="edit-delete-group" *ngIf="isGroupManager">
+            <span class="fa fa-pencil edit" (click)="editGroup(group.id)"></span>
+            <span class="dot">○</span>
+            <span class="fa fa-trash delete" (click)="deleteGroup(group.id)"></span>
+        </div>
+
         <button class="fa fa-envelope post-button" (click)="createPost()" data-tooltip="Create a Post" *ngIf="isGroupManager"></button>
     
         <div class="posts" *ngFor="let post of posts">
             <div class="post">  
-                <div class="group-icons">
+                <div class="post-icons">
                     <div>
                         <div class="fa fa-calendar">
                             <span class="date">{{ post.date }}</span>
                         </div>
                     </div>
 
-                    <div class="edit-delete" *ngIf="isGroupManager">
+                    <div class="edit-delete-post" *ngIf="isGroupManager">
                         <span class="fa fa-pencil edit" (click)="editPost(post.id)"></span>
                         <span class="dot">○</span>
                         <span class="fa fa-trash delete" (click)="deletePost(post.id)"></span>

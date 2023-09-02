@@ -95,6 +95,25 @@ export class ReadPostsComponent implements OnInit {
     })
   }
 
+  editGroup(groupId: number) {
+    this.router.navigate(['editGroup', groupId]);
+  }
+
+  deleteGroup(groupId: number) {
+    this.groupService.deleteGroup(groupId)
+    .subscribe({
+      next:(response) => 
+      {
+        this.toast.success({ detail:"SUCCESS", summary: "Group Deleted Succesfully!", duration: 5000});
+        this.router.navigate(['groups']);
+      },
+      error:(error) => 
+      {
+        this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
+      }
+    });
+  }
+
   getPosts(groupId: number) {
     this.postService.getPosts(groupId)
     .subscribe((response) => {

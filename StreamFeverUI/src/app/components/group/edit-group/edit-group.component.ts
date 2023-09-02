@@ -65,7 +65,7 @@ export class EditGroupComponent {
         next:(response) => 
         {
           this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
-          this.router.navigate(['groups'] );
+          this.router.navigate(['posts', group.id]);
         },
         error:(error) => 
         {
