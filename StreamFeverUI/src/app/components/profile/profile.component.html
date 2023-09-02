@@ -7,10 +7,11 @@
         <div class="header-button">
             <div class="dropdown">
                 <button class="dropdown-button">
-                    {{ user.firstName }} {{ user.lastName }}
+                    {{ name }}
                     <span class="fa fa-caret-down"></span>
                 </button>
                 <div class="dropdown-content">
+                    <a id="a-profile" *ngIf="userId !== profileUserId" (click)="profile(userId)">Profile</a>
                     <a id="a-logout" (click)="logOut()">Logout</a>
                 </div>
             </div>

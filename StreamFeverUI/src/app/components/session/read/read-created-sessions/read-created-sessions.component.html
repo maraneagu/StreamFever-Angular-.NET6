@@ -23,8 +23,8 @@
             <div class="session">
                 <span class="title">{{ session.title }}</span>
 
-                <span class="fa fa-user username-icon" (click)="profile(userId)"></span>
-                <span class="username" (click)="profile(userId)">{{ sessionUsernames.get(session.userId) }}</span>
+                <span class="fa fa-user username-icon" (click)="profile(session.userId)"></span>
+                <span class="username" (click)="profile(session.userId)">{{ sessionUsernames.get(session.userId) }}</span>
 
                 <div class="date-time-icons">
                     <div class="fa fa-calendar date">
@@ -40,11 +40,17 @@
                     <span class="description">{{ session.description }}</span>
                 </div>
                 
-                <div class="icons">
+                <button class="attend-button" *ngIf="sessionAttend.get(session.id)" (click)="attend(session.id)">Attend</button>
+                
+                <div class="icons" *ngIf="sessionEditDelete.get(session.id)">
                     <span class="fa fa-pencil edit" (click)="edit(session.id)"></span>
                     <span class="dot">○</span>
                     <span class="fa fa-trash delete" (click)="delete(session.id)"></span>
                 </div>
+
+                <button class="unattend-button" *ngIf="!sessionEditDelete.get(session.id) && !sessionAttend.get(session.id)" (click)="unattend(session.id)">
+                    Unattend
+                </button>
             </div>
         </div>
     </div>

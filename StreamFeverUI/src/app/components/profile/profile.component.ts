@@ -15,8 +15,12 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 
 export class ProfileComponent implements OnInit {
-  public user!: User;
+  public name!: string;
+  public role!: string;
   public userId!: number;
+
+  public profileUserId!: number;
+  public user!: User;
 
   public createdGroups: boolean = false;
   public createdSessions: boolean = false;
@@ -31,12 +35,30 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.userId = +params.get('userId')!;
+    this.userService.getName()
+    .subscribe(response => {
+      let nameToken = this.authentificationService.getNameToken();
+      this.name = response || nameToken;
+    });
 
-      this.userService.getUser(this.userId)
+    this.userService.getRole()
+    .subscribe(response => {
+      let roleToken = this.authentificationService.getRoleToken();
+      this.role = response || roleToken;
+    });
+
+    this.userService.getIdByToken(this.authentificationService.getToken())
+    .subscribe((response) => {
+      this.userId = response.id;
+    })
+
+    this.route.paramMap.subscribe(params => {
+      this.profileUserId = +params.get('userId')!;
+
+      this.userService.getUser(this.profileUserId)
       .subscribe((response) => {
         this.user = response.user;
+        console.log(this.user.id);
 
         this.groupService.getCreatedGroups(this.user.id)
         .subscribe({
@@ -90,23 +112,27 @@ export class ProfileComponent implements OnInit {
   }
 
   getCreatedGroups() {
-    this.router.navigate(['createdGroups']);
+    this.router.navigate(['createdGroups', this.profileUserId]);
   }
 
   getCreatedSessions() {
-    this.router.navigate(['createdSessions']);
+    this.router.navigate(['createdSessions', this.profileUserId]);
   }
 
   getJoinedGroups() {
-    this.router.navigate(['joinedGroups']);
+    this.router.navigate(['joinedGroups', this.profileUserId]);
   }
 
   getAttendedSessions() {
-    this.router.navigate(['attendedSessions']);
+    this.router.navigate(['attendedSessions', this.profileUserId]);
   }
 
   home() {
     this.router.navigate(['home']);
+  }
+
+  profile(userId: number) {
+    this.router.navigate(['profile', userId]);
   }
 
   logOut() {

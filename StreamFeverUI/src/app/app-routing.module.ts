@@ -51,7 +51,7 @@ const routes: Routes = [
     canActivate: [authentificationGuard]
   },
   {
-    path: 'createdGroups',
+    path: 'createdGroups/:userId',
     component: ReadCreatedGroupsComponent,
     canActivate: [authentificationGuard]
   },
@@ -61,7 +61,7 @@ const routes: Routes = [
     canActivate: [authentificationGuard]
   },
   {
-    path: 'joinedGroups',
+    path: 'joinedGroups/:userId',
     component: ReadJoinedGroupsComponent,
     canActivate: [authentificationGuard]
   },
@@ -91,7 +91,7 @@ const routes: Routes = [
     canActivate: [authentificationGuard]
   },
   {
-    path: 'createdSessions',
+    path: 'createdSessions/:userId',
     component: ReadCreatedSessionsComponent,
     canActivate: [authentificationGuard]
   },
@@ -101,7 +101,7 @@ const routes: Routes = [
     canActivate: [authentificationGuard]
   },
   {
-    path: 'attendedSessions',
+    path: 'attendedSessions/:userId',
     component: ReadAttendedSessionsComponent,
     canActivate: [authentificationGuard]
   },

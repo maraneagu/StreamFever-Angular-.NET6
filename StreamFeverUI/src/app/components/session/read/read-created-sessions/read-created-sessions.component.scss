@@ -107,11 +107,29 @@
     
                     border: none;
                     border-radius: 15px;
-                    margin-bottom: 25px;
+                    margin-bottom: 35px;
     
                     &:hover {
-                        background-color:  #4e57a6;
-                        color: rgb(208, 210, 235);
+                        background-color: rgb(208, 210, 235);
+                        color: rgb(26, 2, 59) ;
+                        font-weight: 500;
+                    }
+                }
+
+                .unattend-button {
+                    width: 100%;
+    
+                    background-color: rgb(232, 82, 82);
+                    color: white;
+                    font-size: 13px;
+    
+                    border: none;
+                    border-radius: 15px;
+                    margin-bottom: 35px;
+    
+                    &:hover {
+                        background-color: rgb(208, 210, 235);
+                        color: red;
                         font-weight: 500;
                     }
                 }
@@ -121,7 +139,7 @@
                     font-size: 17px;
                     text-align: center;
     
-                    margin-bottom: 25px;
+                    margin-bottom: 35px;
                     cursor: pointer;
     
                     .edit {

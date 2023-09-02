@@ -40,7 +40,15 @@
                     <span class="description">{{ session.description }}</span>
                 </div>
 
-                <button class="unattend-button" (click)="unattend(session.id)">
+                <button class="attend-button" *ngIf="sessionAttend.get(session.id)" (click)="attend(session.id)">Attend</button>
+                
+                <div class="icons" *ngIf="sessionEditDelete.get(session.id)">
+                    <span class="fa fa-pencil edit" (click)="edit(session.id)"></span>
+                    <span class="dot">○</span>
+                    <span class="fa fa-trash delete" (click)="delete(session.id)"></span>
+                </div>
+
+                <button class="unattend-button" *ngIf="!sessionEditDelete.get(session.id) && !sessionAttend.get(session.id)" (click)="unattend(session.id)">
                     Unattend
                 </button>
             </div>

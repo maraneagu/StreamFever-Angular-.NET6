@@ -98,6 +98,24 @@
                     }
                 }
 
+                .attend-button {
+                    width: 100%;
+    
+                    background-color: rgb(39, 3, 94);
+                    color: rgb(208, 210, 235);
+                    font-size: 13px;
+    
+                    border: none;
+                    border-radius: 15px;
+                    margin-bottom: 35px;
+    
+                    &:hover {
+                        background-color: rgb(208, 210, 235);
+                        color: rgb(26, 2, 59) ;
+                        font-weight: 500;
+                    }
+                }
+
                 .unattend-button {
                     width: 100%;
     
@@ -113,6 +131,23 @@
                         background-color: rgb(208, 210, 235);
                         color: red;
                         font-weight: 500;
+                    }
+                }
+    
+                .icons {
+                    color: rgb(26, 2, 59);
+                    font-size: 17px;
+                    text-align: center;
+    
+                    margin-bottom: 35px;
+                    cursor: pointer;
+    
+                    .edit {
+                        margin-right: 25px;
+                    }
+    
+                    .dot {
+                        margin-right: 25px;
                     }
                 }
             }

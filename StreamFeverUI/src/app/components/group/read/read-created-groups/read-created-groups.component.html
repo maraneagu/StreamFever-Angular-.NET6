@@ -11,7 +11,7 @@
                     <span class="fa fa-caret-down"></span>
                 </button>
                 <div class="dropdown-content">
-                    <a id="a-profile" (click)="profile()">Profile</a>
+                    <a id="a-profile" (click)="profile(userId)">Profile</a>
                     <a id="a-logout" (click)="logOut()">Logout</a>
                 </div>
             </div>
@@ -23,18 +23,24 @@
             <div class="group">
                 <span class="name" (click)="posts(group.id)">{{ group.name }}</span>
 
-                <span class="fa fa-user username-icon" (click)="profile()"></span>
-                <span class="username" (click)="profile()">{{ groupUsernames.get(group.userId) }}</span>
+                <span class="fa fa-user username-icon" (click)="profile(group.userId)"></span>
+                <span class="username" (click)="profile(group.userId)">{{ groupUsernames.get(group.userId) }}</span>
                 
                 <div class="description-container">
                     <span class="description">{{ group.description }}</span>
                 </div>
                 
-                <div class="icons">
+                <button class="join-button" *ngIf="groupJoin.get(group.id)" (click)="join(group.id)">Join</button>
+                
+                <div class="icons" *ngIf="groupEditDelete.get(group.id)">
                     <span class="fa fa-pencil edit" (click)="edit(group.id)"></span>
                     <span class="dot">○</span>
                     <span class="fa fa-trash delete" (click)="delete(group.id)"></span>
                 </div>
+
+                <button class="leave-button" *ngIf="!groupEditDelete.get(group.id) && !groupJoin.get(group.id)" (click)="leave(group.id)">
+                    Leave
+                </button>
             </div>
         </div>
     </div>

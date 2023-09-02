@@ -77,6 +77,42 @@
                         font-style: italic;
                     }
                 }
+
+                .join-button {
+                    width: 100%;
+    
+                    background-color: #616ccd;
+                    color: rgb(208, 210, 235);
+                    font-size: 13px;
+    
+                    border: none;
+                    border-radius: 15px;
+                    margin-bottom: 35px;
+    
+                    &:hover {
+                        background-color: rgb(208, 210, 235);
+                        color: rgb(39, 3, 94);
+                        font-weight: 500;
+                    }
+                }
+
+                .leave-button {
+                    width: 100%;
+    
+                    background-color: rgb(242, 124, 124);
+                    color: white;
+                    font-size: 13px;
+    
+                    border: none;
+                    border-radius: 15px;
+                    margin-bottom: 35px;
+    
+                    &:hover {
+                        background-color: rgb(208, 210, 235);
+                        color: red;
+                        font-weight: 500;
+                    }
+                }
     
                 .icons {
                     color: white;
