@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './read-attended-sessions.component.html',
   styleUrls: ['./read-attended-sessions.component.scss']
 })
+
 export class ReadAttendedSessionsComponent {
   public name: string = "";
   public role!: string;

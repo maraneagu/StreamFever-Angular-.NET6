@@ -29,21 +29,61 @@
         <button class="fa fa-envelope post-button" (click)="createPost()" data-tooltip="Create a Post" *ngIf="isGroupManager"></button>
     
         <div class="posts" *ngFor="let post of posts">
-                <div class="post">
-                    <div class="date-icon">
-                        <div class="fa fa-calendar date">
-                            <span class="text">{{ post.date }}</span>
+            <div class="post">  
+                <div class="group-icons">
+                    <div>
+                        <div class="fa fa-calendar">
+                            <span class="date">{{ post.date }}</span>
                         </div>
                     </div>
-                    
-                    <span class="description">{{ post.description }}</span>
-                    
-                    <div class="icons" *ngIf="isGroupManager">
-                        <span class="fa fa-pencil edit" (click)="edit(post.id)"></span>
+
+                    <div class="edit-delete" *ngIf="isGroupManager">
+                        <span class="fa fa-pencil edit" (click)="editPost(post.id)"></span>
                         <span class="dot">○</span>
-                        <span class="fa fa-trash delete" (click)="delete(post.id)"></span>
+                        <span class="fa fa-trash delete" (click)="deletePost(post.id)"></span>
                     </div>
                 </div>
+
+                <span class="description">{{ post.description }}</span>
+
+                <form [formGroup]="createCommentForm" class="comment-form">
+                    <div class="form-group pt-3" class="content">
+                        <div class="input-field" [class.error]="createCommentForm.controls['content'].dirty && createCommentForm.hasError('required', 'content')">
+                            <span class="fa fa-film p-2"></span>
+        
+                            <input formControlName='content' type="text" placeholder="Comment">
+                        </div>
+                    </div>
+                    <small *ngIf="createCommentForm.controls['content'].dirty && createCommentForm.hasError('required', 'content')" class="text-danger">*The content is required.</small>
+                    
+                    <button (click)="createComment(post.id)" type="submit" class="button">Add</button>
+                </form>
+
+                <div class="comments">
+                    <div class="comment" *ngFor="let comment of comments.get(post.id)">
+                        <div class="comment-icons">
+                            <div>
+                                <div class="fa fa-calendar">
+                                    <span class="date">{{ comment.date }}</span>
+                                </div>
+                            </div>
+        
+                            <div class="edit-delete" *ngIf="comment.userId === userId">
+                                <span class="fa fa-pencil edit" (click)="editComment(comment.id)"></span>
+                                <span class="dot">○</span>
+                                <span class="fa fa-trash delete" (click)="deleteComment(comment.id)"></span>
+                            </div>
+                        </div>
+
+                        <div class="comment-username" (click)="profile(comment.userId)">
+                            <span class="fa fa-user icon"></span>
+                            <span class="text">{{ commentUsernames.get(comment.id) }}</span>
+                        </div>
+
+                        <span class="content">{{ comment.content }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

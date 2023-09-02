@@ -30,6 +30,7 @@ import { ReadPostsComponent } from './components/post/read-posts/read-posts.comp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreatePostComponent } from './components/post/create-post/create-post.component';
 import { EditPostComponent } from './components/post/edit-post/edit-post.component';
+import { EditCommentComponent } from './components/comment/edit-comment/edit-comment.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { EditPostComponent } from './components/post/edit-post/edit-post.compone
     ReadPostsComponent,
     CreatePostComponent,
     EditPostComponent,
+    EditCommentComponent,
   ],
   imports: [
     BrowserModule,

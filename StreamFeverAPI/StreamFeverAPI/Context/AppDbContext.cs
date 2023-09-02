@@ -16,6 +16,7 @@ namespace StreamFeverAPI.Context
         public DbSet<UserGroup> UserGroups { get; set; }
         public DbSet<UserSession> UserSessions { get; set; }
         public DbSet<Post> Posts { get; set; } 
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +26,7 @@ namespace StreamFeverAPI.Context
             modelBuilder.Entity<UserGroup>().ToTable("usergroups");
             modelBuilder.Entity<UserSession>().ToTable("usersessions");
             modelBuilder.Entity<Post>().ToTable("posts");
+            modelBuilder.Entity<Comment>().ToTable("comments");
         }
     }
 }

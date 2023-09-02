@@ -1,6 +1,6 @@
 .read-groups {
     background: linear-gradient(to bottom, rgb(39, 3, 94), rgb(26, 2, 59));
-    min-height: 180vh;
+    min-height: 220vh;
     font-family: Jost;
 
     .header-logo {
@@ -30,7 +30,7 @@
     
         .username {
             font-style: italic;
-            margin-bottom: 70px;
+            margin-bottom: 50px;
             cursor: pointer;
 
             .icon {
@@ -95,53 +95,186 @@
             
                 height: auto;
                 width: 100%;
-                margin-bottom: 35px;
+                margin-bottom: 20px;
                 padding: 0px 50px;
                 
                 border-radius: 8px;
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
 
-                .date-icon {
+                .group-icons {
+                    display: flex;
+                    justify-content: space-between;
+
                     color: rgb(26, 2, 59);
-                    font-size: 15px;
+                    font-size: 14px;
                     text-align: left;
                     
-                    margin-top: 30px;
+                    margin-top: 45px;
 
-                    .text {
+                    .date {
+                        margin-left: 10px;
                         font-family: Jost;
                         font-weight: 500;
-                        margin-left: 11px;
+                    }
+
+                    .edit-delete {
+                        text-align: center;        
+                        cursor: pointer;
+        
+                        .edit {
+                            margin-right: 25px;
+                        }
+        
+                        .dot {
+                            margin-right: 25px;
+                        }
                     }
                 }
 
                 .description {
                     color:white;
 
-                    text-align: left;
-                    font-size: 16px;
-                    font-style: italic;
+                    text-align: justify;
+                    font-size: 18px;
                     font-weight: 500;
                     overflow-wrap: break-word;
 
-                    margin-top: 33px;
+                    margin-top: 20px;
                     margin-bottom: 50px;
                 }
-    
-                .icons {
-                    color: rgb(26, 2, 59);
-                    font-size: 14px;
-                    text-align: right;
-    
-                    margin-bottom: 25px;
-                    cursor: pointer;
-    
-                    .edit {
-                        margin-right: 25px;
+
+                .comment-form {
+                    display: flex;
+                    align-items: center;
+                    width: 100%; 
+                    margin-bottom: 20px;
+
+                    .content {
+                        flex: 90%;
+                        margin-right: 8px;
+                        
+                        .input-field {
+                            background-color: rgb(208, 210, 235);
+                            color: rgba(100,110,203,255);
+                            font-size: 13px;
+                            
+                            display: flex;
+                            align-items: center;
+                            padding: 3px 17px;
+                        
+                            border: 1px solid rgba(100,110,203,255);
+                            border-radius: 13px;
+                        
+                            cursor: pointer;
+                        }
+                
+                        .input-field.error {
+                            color: red; 
+                            border: 1px solid red;
+                        }
+                
+                        input[type='text'] {
+                            background-color: rgb(208, 210, 235);
+                            width: 100%;
+                            border: none;
+                            outline: none;
+                            box-shadow: none;
+                        }
+                
+                        .input-field input[type='text']:-internal-autofill-selected {
+                            box-shadow: 0 0 0 30px rgb(208, 210, 235) inset;
+                        }
+                
                     }
+
+                    .button {
+                        flex: 10%;
+
+                        color: #ffffff;
+                        background: rgb(26, 2, 59); 
+                        font-size: 13px; 
+            
+                        width: 20%;
+                        height: 35px;
+            
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        border: none;
+                        border-radius: 15px;
+            
+                        &:hover {
+                            background: white;
+                            color: rgb(26, 2, 59);
+                            font-weight: 500;    
+                        }
+                    }
+                }
+
+                .comments {
+                    width: 100%;
+                    margin-bottom: 50px;
+
+                    .comment {
+                        background: linear-gradient(to bottom, rgb(161, 167, 216), rgb(129, 138, 226));
     
-                    .dot {
-                        margin-right: 25px;
+                        display: flex;
+                        flex-direction: column;
+                    
+                        height: auto;
+                        width: 100%;
+                        padding: 15px 30px;
+                        margin-bottom: 15px;
+                        
+                        border-radius: 17px;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+
+                        .comment-icons {
+                            display: flex;
+                            justify-content: space-between;
+        
+                            color: white;
+                            font-size: 11px;
+                            text-align: left;
+                            margin-bottom: 3px;
+                                    
+                            .date {
+                                margin-left: 10px;
+                                font-family: Jost;
+                                font-weight: 500;
+                            }
+        
+                            .edit-delete {
+                                text-align: center;        
+                                cursor: pointer;
+                
+                                .edit {
+                                    margin-right: 25px;
+                                }
+                
+                                .dot {
+                                    margin-right: 25px;
+                                }
+                            }
+                        }
+
+                        .comment-username {
+                            color: black;
+                            font-size: 11px;
+                            text-align: left;
+                            margin-bottom: 25px;
+                            cursor: pointer;
+                
+                            .icon {
+                                font-size: 11px;
+                                margin-right: 7px;
+                            }
+                        }
+
+                        .content {
+                            text-align: left;
+                            font-size: 12px;
+                            color: rgb(39, 3, 94);
+                        }
                     }
                 }
             }

@@ -23,6 +23,7 @@ import { ReadAttendedSessionsComponent } from './components/session/read/read-at
 import { ReadPostsComponent } from './components/post/read-posts/read-posts.component';
 import { CreatePostComponent } from './components/post/create-post/create-post.component';
 import { EditPostComponent } from './components/post/edit-post/edit-post.component';
+import { EditCommentComponent } from './components/comment/edit-comment/edit-comment.component';
 
 // DEFINING THE ROUTES FOR THE APP
 const routes: Routes = [
@@ -83,6 +84,11 @@ const routes: Routes = [
   {
     path: 'posts/:groupId',
     component: ReadPostsComponent,
+    canActivate: [authentificationGuard]
+  },
+  {
+    path: 'editComment/:commentId',
+    component: EditCommentComponent,
     canActivate: [authentificationGuard]
   },
   {

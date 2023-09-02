@@ -10,6 +10,7 @@ import { SessionService } from 'src/app/services/session/session.service';
   templateUrl: './edit-session.component.html',
   styleUrls: ['./edit-session.component.scss']
 })
+
 export class EditSessionComponent {
   public sessionId!: number;
   public editSessionForm!: FormGroup;

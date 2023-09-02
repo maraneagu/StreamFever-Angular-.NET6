@@ -82,6 +82,7 @@ namespace StreamFeverAPI.Controllers
             }
 
             post.Description = postBody.Description;
+            post.Date = DateTime.Now;
 
             _context.Posts.Update(post);
             await _context.SaveChangesAsync();

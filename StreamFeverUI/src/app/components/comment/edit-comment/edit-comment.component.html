@@ -1,0 +1,25 @@
+<div class="edit-comment">
+    <div class="form">
+        <div class="heading">
+            <span class="fa fa-film icon-heading"></span>
+            <h3 class="text-heading">
+                Comment
+            </h3>
+        </div>
+        
+        <div class="body">
+            <form [formGroup]="editCommentForm">
+                <div class="form-group pt-3">
+                    <div class="input-field" [class.error]="editCommentForm.controls['content'].dirty && editCommentForm.hasError('required', 'content')">
+                        <span class="fa fa-star p-2"></span>
+    
+                        <input formControlName='content' type="text" placeholder="Comment" (change)="onContentChange()">
+                    </div>
+                </div>
+                <small *ngIf="editCommentForm.controls['content'].dirty && editCommentForm.hasError('required', 'content')" class="text-danger">*The content is required.</small>
+                
+                <button (click)="onSubmit()" type="submit" class="button" [disabled]="!contentModified">Edit</button>
+            </form>
+        </div> 
+    </div>
+</div>

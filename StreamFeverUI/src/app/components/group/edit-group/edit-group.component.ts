@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateForm';
-import { Group } from 'src/app/models/group.model';
 import { GroupService } from 'src/app/services/group/group.service';
 
 @Component({
