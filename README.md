@@ -41,10 +41,10 @@ On the <i>signup</i> page, you can create your account by setting your <i>first 
 ## Groups
 
 
-On the groups page, you are able to edit the groups you have created, or see the groups you can join or have joined already (the ones that have the 🎟 ticket icon).
+On the groups page, you are able to edit the groups you have created, or see the groups you can join or leave the ones you have joined already.
 
 
-![Screenshot 2023-09-02 121612](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/b611f926-be89-43c0-b041-6f94200dc891)
+![Screenshot 2023-09-02 145253](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/52cf30a8-9c0e-4fff-a7b8-aa3d8c5b9ab3)
 
 <br>
 
@@ -80,10 +80,10 @@ When clicking on the <i>name</i> of a group on the <i>Groups</i> page, are you s
 ## Sessions
 
 
-On the <i>Sessions</i> page, you are able to edit the sessions you have created, or see the sessions you can attend or have attended already (the ones that have the 🎟 ticket icon).
+On the <i>Sessions</i> page, you are able to edit the sessions you have created, or see the sessions you can attend or unattend the ones you have attended already.
 
 
-![Screenshot 2023-09-02 123142](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/eb46e109-4f37-475c-9bc0-8b745283f6b2)
+![Screenshot 2023-09-02 150646](https://github.com/maraneagu/StreamFever-Angular-.NET6/assets/93272424/b41debde-2a47-4a44-aa7e-3a930432df8f)
 
 <br>
 
