@@ -11,7 +11,7 @@
                     <span class="fa fa-caret-down"></span>
                 </button>
                 <div class="dropdown-content">
-                    <a id="a-profile" (click)="profile()">Profile</a>
+                    <a id="a-profile" (click)="profile(userId)">Profile</a>
                     <a id="a-logout" (click)="logOut()">Logout</a>
                 </div>
             </div>
@@ -23,8 +23,8 @@
             <div class="session">
                 <span class="title">{{ session.title }}</span>
 
-                <span class="fa fa-user username-icon"></span>
-                <span class="username">{{ sessionUsernames.get(session.userId) }}</span>
+                <span class="fa fa-user username-icon" (click)="profile(userId)"></span>
+                <span class="username" (click)="profile(userId)">{{ sessionUsernames.get(session.userId) }}</span>
 
                 <div class="date-time-icons">
                     <div class="fa fa-calendar date">

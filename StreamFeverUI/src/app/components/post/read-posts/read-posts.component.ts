@@ -19,6 +19,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ReadPostsComponent implements OnInit {
   public name: string = "";
   public role!: string;
+  public userId!: number;
 
   public groupId!: number;
   public group!: Group;
@@ -36,6 +37,11 @@ export class ReadPostsComponent implements OnInit {
     private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.userService.getIdByToken(this.authentificationService.getToken())
+    .subscribe((response) => {
+      this.userId = response.id;
+    })
+
     this.userService.getName()
     .subscribe(response => {
       let nameToken = this.authentificationService.getNameToken();
@@ -125,8 +131,8 @@ export class ReadPostsComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-  profile() : void {
-    this.router.navigate(['profile']);
+  profile(userId: number) : void {
+    this.router.navigate(['profile', userId]);
   }
 
   logOut() : void {

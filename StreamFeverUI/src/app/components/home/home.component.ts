@@ -4,7 +4,6 @@ import { AuthentificationService } from 'src/app/services/authentification/authe
 import { GroupService } from 'src/app/services/group/group.service';
 import { UserService } from 'src/app/services/user/user.service';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -51,7 +50,10 @@ export class HomeComponent implements OnInit {
   }
 
   profile() : void {
-    this.router.navigate(['profile']);
+    this.userService.getIdByToken(this.authentificationService.getToken())
+    .subscribe((response) =>{
+      this.router.navigate(['profile', response.id]);
+    })
   }
 
   logOut() {

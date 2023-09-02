@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ReadGroupsComponent implements OnInit {
   public name: string = "";
   public role!: string;
+  public userId!: number;
 
   public groups: Group[] = [];
   public groupUsernames: Map<number, string> = new Map<number, string>();
@@ -39,6 +40,11 @@ export class ReadGroupsComponent implements OnInit {
       let roleToken = this.authentificationService.getRoleToken();
       this.role = response || roleToken;
     });
+
+    this.userService.getIdByToken(this.authentificationService.getToken())
+    .subscribe((response) => {
+      this.userId = response.id;
+    })
 
     this.groupService.getGroups()
     .subscribe(response => {
@@ -74,46 +80,39 @@ export class ReadGroupsComponent implements OnInit {
 
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
-      const userId = response.id;
-
       this.groups.forEach((group) => {
         const userGroup = {
-          userId: userId,
+          userId: response.id,
           groupId: group.id
         };
-
+  
         this.groupService.userInGroup(userGroup).
         subscribe((response) => {
-          if (group.userId === userId || response)
+          if (group.userId === userGroup.userId || response)
             this.groupJoin.set(group.id, false);
           else this.groupJoin.set(group.id, true);
         });
-      });      
-    });
+      });
+    })
   }
 
   join(groupId: number) {
-    this.userService.getIdByToken(this.authentificationService.getToken())
-    .subscribe((response) => {
-      const userId = response.id;
+    const userGroup = {
+      userId: this.userId,
+      groupId: groupId
+    };
 
-      const userGroup = {
-        userId: userId,
-        groupId: groupId
-      };
-
-      this.groupService.joinGroup(userGroup)
-      .subscribe({
-        next:(response) => 
-        {
-          this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
-          window.location.reload(); 
-        },
-        error:(error) => 
-        {
-          this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
-        }
-      })
+    this.groupService.joinGroup(userGroup)
+    .subscribe({
+      next:(response) => 
+      {
+        this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
+        window.location.reload(); 
+      },
+      error:(error) => 
+      {
+        this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
+      }
     });
   }
 
@@ -122,14 +121,12 @@ export class ReadGroupsComponent implements OnInit {
 
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
-      const userId = response.id;
-
       this.groups.forEach((group) => {
-        if (group.userId === userId)
+        if (group.userId === response.id)
           this.groupEditDelete.set(group.id, true);
         else this.groupEditDelete.set(group.id, false);
-      });      
-    });
+      }); 
+    })     
   }
 
   edit(groupId: number) {
@@ -159,8 +156,8 @@ export class ReadGroupsComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-  profile() : void {
-    this.router.navigate(['profile']);
+  profile(userId: number) : void {
+    this.router.navigate(['profile', userId]);
   }
 
   logOut() : void {

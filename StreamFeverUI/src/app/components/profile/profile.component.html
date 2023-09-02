@@ -26,8 +26,8 @@
         </div>
 
         <div class="buttons">
-            <button class="button" [disabled]="!createdGroups" (click)="getCreatedGroups()">My Groups</button>
-            <button class="button" [disabled]="!createdSessions" (click)="getCreatedSessions()">My Sessions</button>
+            <button class="button" *ngIf="user.role === 'manager'" [disabled]="!createdGroups" (click)="getCreatedGroups()">My Groups</button>
+            <button class="button" *ngIf="user.role === 'manager'" [disabled]="!createdSessions" (click)="getCreatedSessions()">My Sessions</button>
             <button class="button" [disabled]="!joinedGroups" (click)="getJoinedGroups()">Joined Groups</button>
             <button class="button" [disabled]="!attendedSessions" (click)="getAttendedSessions()">Attended Sessions</button>
         </div>

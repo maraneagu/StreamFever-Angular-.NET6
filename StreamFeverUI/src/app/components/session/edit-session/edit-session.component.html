@@ -31,7 +31,7 @@
                         <span class="fa fa-address-card p-2"></span>
                         <label for="time" class="me-2 text-muted">Date</label>
 
-                        <input formControlName='date' type="date" placeholder="Date">
+                        <input formControlName='date' type="date" placeholder="Date" (change)="onDateChange()">
                     </div>
                 </div>
                 <small *ngIf="editSessionForm.controls['date'].dirty && editSessionForm.hasError('required', 'date')" class="text-danger">*The date is required.</small>
@@ -41,12 +41,12 @@
                         <span class="fa fa-address-card p-2"></span>
                         <label for="time" class="me-2 text-muted">Time</label>
 
-                        <input formControlName='time' type="time" placeholder="Time">
+                        <input formControlName='time' type="time" placeholder="Time" (change)="onTimeChange()">
                     </div>
                 </div>
                 <small *ngIf="editSessionForm.controls['time'].dirty && editSessionForm.hasError('required', 'time')" class="text-danger">*The time is required.</small>
                 
-                <button (click)="onSubmit()" type="submit" class="button" [disabled]="!titleModified && !descriptionModified">Edit</button>
+                <button (click)="onSubmit()" type="submit" class="button" [disabled]="!titleModified && !descriptionModified && !dateModified && !timeModified">Edit</button>
             </form>
         </div> 
     </div>

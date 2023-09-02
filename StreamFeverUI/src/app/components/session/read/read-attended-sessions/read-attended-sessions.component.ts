@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ReadAttendedSessionsComponent {
   public name: string = "";
   public role!: string;
+  public userId!: number;
 
   public sessions: Session[] = [];
   public sessionUsernames: Map<number, string> = new Map<number, string>();
@@ -39,6 +40,8 @@ export class ReadAttendedSessionsComponent {
 
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
+      this.userId = response.id;
+
       this.sessionService.getAttendedSessions(response.id)
       .subscribe(response => {
         // GETTING THE SESSIONS
@@ -67,8 +70,8 @@ export class ReadAttendedSessionsComponent {
     this.router.navigate(['home']);
   }
 
-  profile() : void {
-    this.router.navigate(['profile']);
+  profile(userId: number) : void {
+    this.router.navigate(['profile', userId]);
   }
 
   logOut() : void {

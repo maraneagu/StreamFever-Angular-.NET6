@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Group } from 'src/app/models/group.model';
 import { Session } from 'src/app/models/session.model';
 import { User } from 'src/app/models/user.model';
@@ -16,6 +16,7 @@ import { UserService } from 'src/app/services/user/user.service';
 
 export class ProfileComponent implements OnInit {
   public user!: User;
+  public userId!: number;
 
   public createdGroups: boolean = false;
   public createdSessions: boolean = false;
@@ -26,12 +27,14 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private groupService: GroupService,
     private sessionService: SessionService,
-    private router: Router) {}
+    private router: Router,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.userService.getIdByToken(this.authentificationService.getToken())
-    .subscribe((response) => {
-      this.userService.getUser(response.id)
+    this.route.paramMap.subscribe(params => {
+      this.userId = +params.get('userId')!;
+
+      this.userService.getUser(this.userId)
       .subscribe((response) => {
         this.user = response.user;
 
@@ -83,7 +86,7 @@ export class ProfileComponent implements OnInit {
           }
         });
       })
-    });
+    })
   }
 
   getCreatedGroups() {

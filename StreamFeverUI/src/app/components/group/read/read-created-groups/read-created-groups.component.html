@@ -23,8 +23,8 @@
             <div class="group">
                 <span class="name" (click)="posts(group.id)">{{ group.name }}</span>
 
-                <span class="fa fa-user username-icon"></span>
-                <span class="username">{{ groupUsernames.get(group.userId) }}</span>
+                <span class="fa fa-user username-icon" (click)="profile()"></span>
+                <span class="username" (click)="profile()">{{ groupUsernames.get(group.userId) }}</span>
                 
                 <div class="description-container">
                     <span class="description">{{ group.description }}</span>

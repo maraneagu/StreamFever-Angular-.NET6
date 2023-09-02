@@ -11,7 +11,7 @@
                     <span class="fa fa-caret-down"></span>
                 </button>
                 <div class="dropdown-content">
-                    <a id="a-profile" (click)="profile()">Profile</a>
+                    <a id="a-profile" (click)="profile(userId)">Profile</a>
                     <a id="a-logout" (click)="logOut()">Logout</a>
                 </div>
             </div>
@@ -21,7 +21,7 @@
     <div class="group" *ngIf="group">
         <span class="name">{{ group.name }}</span>
 
-        <div class="username">
+        <div class="username" (click)="profile(group.userId)">
             <span class="fa fa-user icon"></span>
             <span class="text">{{ groupUsername }}</span>
         </div>

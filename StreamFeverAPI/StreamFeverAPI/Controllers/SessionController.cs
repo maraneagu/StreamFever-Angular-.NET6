@@ -60,6 +60,14 @@ namespace StreamFeverAPI.Controllers
 
             sessionBody.UserId = user.Id;
 
+            if (!IsDateValid(sessionBody.Date, sessionBody.Time))
+            {
+                return BadRequest(new
+                {
+                    Message = "Session In The Past!"
+                });
+            }
+
             await _context.Sessions.AddAsync(sessionBody);
             await _context.SaveChangesAsync();
 
@@ -98,6 +106,14 @@ namespace StreamFeverAPI.Controllers
                 return NotFound(new
                 {
                     Message = "Session Not Found!"
+                });
+            }
+
+            if (!IsDateValid(sessionBody.Date, sessionBody.Time))
+            {
+                return BadRequest(new
+                {
+                    Message = "Session In The Past!"
                 });
             }
 
@@ -206,6 +222,16 @@ namespace StreamFeverAPI.Controllers
                 return false;
             }
             return true;
+        }
+
+        private bool IsDateValid(string date, string time)
+        {
+            if (DateTime.TryParse($"{date} {time}", out DateTime sessionDateTime))
+            {
+                return sessionDateTime > DateTime.Now;
+            }
+
+            return false;
         }
     }
 }

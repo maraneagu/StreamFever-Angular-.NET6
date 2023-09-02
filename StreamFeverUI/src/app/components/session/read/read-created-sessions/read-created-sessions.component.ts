@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ReadCreatedSessionsComponent {
   public name: string = "";
   public role!: string;
+  public userId!: number;
 
   public sessions: Session[] = [];
   public sessionUsernames: Map<number, string> = new Map<number, string>();
@@ -40,6 +41,8 @@ export class ReadCreatedSessionsComponent {
 
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
+      this.userId = response.id;
+
       this.sessionService.getCreatedSessions(response.id)
       .subscribe(response => {
         // GETTING THE SESSIONS
@@ -87,8 +90,8 @@ export class ReadCreatedSessionsComponent {
     this.router.navigate(['home']);
   }
 
-  profile() : void {
-    this.router.navigate(['profile']);
+  profile(userId: number) : void {
+    this.router.navigate(['profile', userId]);
   }
 
   logOut() : void {

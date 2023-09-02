@@ -33,6 +33,9 @@ export class TokenInterceptor implements HttpInterceptor {
             this.toast.warning({detail:"WARNING", summary: "Your Session Has Expired! Please Login Again!"});
             this.router.navigate(['']);
           }
+          else if (error.status === 400) {
+            return throwError(() => new Error("Session In The Past!"));
+          }
         }
         
         return throwError(() => new Error("Some Error Occured!"));

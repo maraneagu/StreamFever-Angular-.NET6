@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ReadSessionsComponent implements OnInit {
   public name: string = "";
   public role!: string;
+  public userId!: number;
 
   public sessions: Session[] = [];
   public sessionUsernames: Map<number, string> = new Map<number, string>();
@@ -39,6 +40,11 @@ export class ReadSessionsComponent implements OnInit {
       let roleToken = this.authentificationService.getRoleToken();
       this.role = response || roleToken;
     });
+
+    this.userService.getIdByToken(this.authentificationService.getToken())
+    .subscribe((response) => {
+      this.userId = response.id;
+    })
 
     this.sessionService.getSessions()
     .subscribe(response => {
@@ -74,48 +80,41 @@ export class ReadSessionsComponent implements OnInit {
 
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
-      const userId = response.id;
-
       this.sessions.forEach((session) => {
         const userSession = {
-          userId: userId,
+          userId: response.id,
           sessionId: session.id
         };
-
+  
         this.sessionService.userInSession(userSession).
         subscribe((response) => {
           console.log(response);
-          if (session.userId === userId || response)
+          if (session.userId === userSession.userId || response)
             this.sessionAttend.set(session.id, false);
           else this.sessionAttend.set(session.id, true);
         });
-      });      
-    });
+      });
+    })      
   }
 
   attend(sessionId: number) {
-    this.userService.getIdByToken(this.authentificationService.getToken())
-    .subscribe((response) => {
-      const userId = response.id;
+    const userSession = {
+      userId: this.userId,
+      sessionId: sessionId
+    };
 
-      const userSession = {
-        userId: userId,
-        sessionId: sessionId
-      };
-
-      this.sessionService.attendSession(userSession)
-      .subscribe({
-        next:(response) => 
-        {
-          this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
-          window.location.reload(); 
-        },
-        error:(error) => 
-        {
-          this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
-        }
-      })
-    });
+    this.sessionService.attendSession(userSession)
+    .subscribe({
+      next:(response) => 
+      {
+        this.toast.success({ detail:"SUCCESS", summary: response.message, duration: 5000});
+        window.location.reload(); 
+      },
+      error:(error) => 
+      {
+        this.toast.error({ detail:"ERROR", summary: error.message, duration: 5000});
+      }
+    })
   }
 
   couldEditDelete() {
@@ -123,14 +122,12 @@ export class ReadSessionsComponent implements OnInit {
 
     this.userService.getIdByToken(this.authentificationService.getToken())
     .subscribe((response) => {
-      const userId = response.id;
-
       this.sessions.forEach((session) => {
-        if (session.userId === userId)
+        if (session.userId === response.id)
           this.sessionEditDelete.set(session.id, true);
         else this.sessionEditDelete.set(session.id, false);
-      });      
-    });
+      }); 
+    })     
   }
 
   edit(sessionId: number) {
@@ -156,8 +153,8 @@ export class ReadSessionsComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-  profile() : void {
-    this.router.navigate(['profile']);
+  profile(userId: number) : void {
+    this.router.navigate(['profile', userId]);
   }
 
   logOut() : void {
