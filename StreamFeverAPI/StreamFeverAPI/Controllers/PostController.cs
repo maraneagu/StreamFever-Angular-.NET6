@@ -39,8 +39,9 @@ namespace StreamFeverAPI.Controllers
         public async Task<ActionResult<IEnumerable<Post>>> GetPosts([FromRoute] int groupId)
         {
             var posts = await _context.Posts
-                .Where(p => p.GroupId == groupId)
-                .ToListAsync();
+            .Where(p => p.GroupId == groupId)
+            .OrderByDescending(p => p.Date)
+            .ToListAsync();
 
             if (!posts.Any())
             {

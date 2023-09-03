@@ -39,8 +39,9 @@ namespace StreamFeverAPI.Controllers
         public async Task<ActionResult<IEnumerable<Comment>>> GetComments([FromRoute] int postId)
         {
             var comments = await _context.Comments
-                .Where(c => c.PostId == postId)
-                .ToListAsync();
+               .Where(c => c.PostId == postId)
+               .OrderByDescending(c => c.Date)
+               .ToListAsync();
 
             if (!comments.Any())
             {

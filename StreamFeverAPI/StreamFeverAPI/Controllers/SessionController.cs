@@ -19,7 +19,19 @@ namespace StreamFeverAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<Session>> GetSessions()
         {
-            return Ok(await _context.Sessions.ToListAsync());
+            var sessions = await _context.Sessions
+                    .OrderByDescending(s => s.Date)
+                    .ToListAsync();
+
+            if (!sessions.Any())
+            {
+                return NotFound(new
+                {
+                    Message = "No Sessions Found!"
+                });
+            }
+
+            return Ok(sessions);
         }
 
         [HttpGet("{id}")]
@@ -81,8 +93,9 @@ namespace StreamFeverAPI.Controllers
         public async Task<ActionResult<IEnumerable<Session>>> CreatedSessions([FromRoute] int userId)
         {
             var sessions = await _context.Sessions
-                .Where(s => s.UserId == userId)
-                .ToListAsync();
+               .Where(s => s.UserId == userId)
+               .OrderByDescending(s => s.Date)
+               .ToListAsync();
 
             if (!sessions.Any())
             {
